@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, dev]
   pull_request:
-    branches: [main, develop]
+    branches: [main, dev]
 
 # Shared setup used by all jobs
 env:
