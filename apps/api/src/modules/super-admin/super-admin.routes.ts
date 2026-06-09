@@ -4,7 +4,8 @@ import { authorize } from "../../middleware/role.middleware.js";
 import { Role }      from "@repo/types";
 import {
   platformStats, listAdmins, inviteAdmin,
-  removeAdmin, getSettings, updateSetting, auditLog,
+  removeAdmin, suspendAdmin, activateAdmin, resendAdminInvite,
+  getSettings, updateSetting, auditLog,
 } from "./super-admin.controller.js";
 
 const router = Router();
@@ -58,23 +59,11 @@ router.get("/admins", listAdmins);
  *               lastName:
  *                 type: string
  */
-router.post("/admins/invite", inviteAdmin);
-
-/**
- * @openapi
- * /api/v1/super-admin/admins/{id}:
- *   delete:
- *     tags: [SuperAdmin]
- *     summary: Remove an admin
- *     security:
- *       - cookieAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema: { type: string }
- */
-router.delete("/admins/:id", removeAdmin);
+router.post("/admins/invite",              inviteAdmin);
+router.post("/admins/:id/resend-invite",  resendAdminInvite);
+router.patch("/admins/:id/suspend",       suspendAdmin);
+router.patch("/admins/:id/activate",      activateAdmin);
+router.delete("/admins/:id",              removeAdmin);
 
 /**
  * @openapi

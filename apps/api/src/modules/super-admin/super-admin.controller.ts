@@ -69,21 +69,34 @@ export const inviteAdmin = catchAsync(async (req: Request, res: Response) => {
   });
 
   const inviteLink = `${process.env.FRONTEND_URL}/set-password?token=${code}&email=${encodeURIComponent(email)}`;
-  await sendInviteEmail(email, inviteLink, firstName ?? "Admin");
+
+  let emailSent = true;
+  try {
+    await sendInviteEmail(email, inviteLink, firstName ?? "Admin");
+  } catch (mailErr: any) {
+    emailSent = false;
+    console.error("❌ [inviteAdmin] email failed:", mailErr?.message);
+  }
 
   await prisma.auditLog.create({
-    data: { userId: req.user!.userId, action: "ADMIN_INVITED", meta: { email } },
+    data: {
+      userId: req.user!.userId, action: "admin.invite",
+      entityType: "user", entityId: admin.id,
+      newValue: { email, role: "ADMIN", emailSent },
+    },
   });
   req.auditLogged = true;
 
   return res.status(HttpStatus.CREATED).json({
     status:  "success",
-    message: "Admin invited successfully",
-    data:    { id: admin.id, email: admin.email },
+    message: emailSent
+      ? "Admin invited successfully"
+      : "Admin created but email delivery failed — use Resend Invite to retry",
+    data:    { id: admin.id, email: admin.email, emailSent },
   });
 });
 
-// ── Remove admin ───────────────────────────────────────────────────────────────
+// ── Remove admin (hard delete) ─────────────────────────────────────────────────
 
 export const removeAdmin = catchAsync(async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -91,17 +104,96 @@ export const removeAdmin = catchAsync(async (req: Request, res: Response) => {
   if (!admin) throw new AppError("Admin not found", HttpStatus.NOT_FOUND);
   if (admin.role !== "ADMIN") throw new AppError("User is not an admin", HttpStatus.BAD_REQUEST);
 
-  await prisma.user.update({
-    where: { id },
-    data:  { accountStatus: "DELETED" },
-  });
+  // Hard delete — frees the email for re-use
+  await prisma.auditLog.deleteMany({ where: { userId: id } });
+  await prisma.user.delete({ where: { id } });
 
   await prisma.auditLog.create({
-    data: { userId: req.user!.userId, action: "ADMIN_REMOVED", meta: { email: admin.email } },
+    data: {
+      userId: req.user!.userId, action: "admin.delete",
+      entityType: "user", entityId: id,
+      oldValue: { email: admin.email, role: "ADMIN" },
+    },
   });
   req.auditLogged = true;
 
-  return res.status(HttpStatus.OK).json({ status: "success", message: "Admin removed" });
+  return res.status(HttpStatus.OK).json({ status: "success", message: "Admin deleted" });
+});
+
+// ── Suspend admin ──────────────────────────────────────────────────────────────
+
+export const suspendAdmin = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const admin  = await prisma.user.findUnique({ where: { id } });
+  if (!admin) throw new AppError("Admin not found", HttpStatus.NOT_FOUND);
+  if (admin.role !== "ADMIN") throw new AppError("User is not an admin", HttpStatus.BAD_REQUEST);
+  if (admin.accountStatus === "SUSPENDED") throw new AppError("Admin is already suspended", HttpStatus.BAD_REQUEST);
+
+  await prisma.user.update({ where: { id }, data: { accountStatus: "SUSPENDED" } });
+
+  await prisma.auditLog.create({
+    data: {
+      userId: req.user!.userId, action: "admin.suspend",
+      entityType: "user", entityId: id,
+      oldValue: { accountStatus: "ACTIVE" }, newValue: { accountStatus: "SUSPENDED" },
+    },
+  });
+  req.auditLogged = true;
+
+  return res.status(HttpStatus.OK).json({ status: "success", message: "Admin suspended" });
+});
+
+// ── Activate admin ─────────────────────────────────────────────────────────────
+
+export const activateAdmin = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const admin  = await prisma.user.findUnique({ where: { id } });
+  if (!admin) throw new AppError("Admin not found", HttpStatus.NOT_FOUND);
+  if (admin.role !== "ADMIN") throw new AppError("User is not an admin", HttpStatus.BAD_REQUEST);
+
+  await prisma.user.update({ where: { id }, data: { accountStatus: "ACTIVE" } });
+
+  await prisma.auditLog.create({
+    data: {
+      userId: req.user!.userId, action: "admin.activate",
+      entityType: "user", entityId: id,
+      oldValue: { accountStatus: admin.accountStatus }, newValue: { accountStatus: "ACTIVE" },
+    },
+  });
+  req.auditLogged = true;
+
+  return res.status(HttpStatus.OK).json({ status: "success", message: "Admin activated" });
+});
+
+// ── Resend invite ──────────────────────────────────────────────────────────────
+
+export const resendAdminInvite = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const admin  = await prisma.user.findUnique({ where: { id } });
+  if (!admin) throw new AppError("Admin not found", HttpStatus.NOT_FOUND);
+  if (admin.accountStatus !== "PENDING") throw new AppError("Admin is not in PENDING state", HttpStatus.BAD_REQUEST);
+
+  const code    = Math.random().toString(36).slice(2, 10).toUpperCase();
+  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+
+  await prisma.user.update({
+    where: { id },
+    data:  { verificationCode: code, verificationExpires: expires },
+  });
+
+  const inviteLink = `${process.env.FRONTEND_URL}/set-password?token=${code}&email=${encodeURIComponent(admin.email)}`;
+  await sendInviteEmail(admin.email, inviteLink, admin.firstName ?? "Admin");
+
+  await prisma.auditLog.create({
+    data: {
+      userId: req.user!.userId, action: "admin.invite.resend",
+      entityType: "user", entityId: id,
+      meta: { email: admin.email },
+    },
+  });
+  req.auditLogged = true;
+
+  return res.status(HttpStatus.OK).json({ status: "success", message: "Invite resent" });
 });
 
 // ── Full audit log ─────────────────────────────────────────────────────────────

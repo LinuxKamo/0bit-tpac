@@ -1,6 +1,8 @@
 export const BRAND = {
-  name:     "YourApp",
-  tagline:  "Your product tagline goes here.",
-  logoMark: "Y",
-  year:     new Date().getFullYear(),
+  name:      "Tshimologong",
+  subtitle:  "DIGITAL PRECINCT",
+  tagline:   "Pan-African Digital Innovation Ecosystem",
+  logoMark:  "T",
+  year:      new Date().getFullYear(),
+  domain:    "tshimologong.co.za",
 } as const;

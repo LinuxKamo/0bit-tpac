@@ -23,15 +23,185 @@ export * from './enums.js';
  */
 export type User = Prisma.UserModel
 /**
- * Model AuditLog
+ * Model Country
  * 
  */
-export type AuditLog = Prisma.AuditLogModel
+export type Country = Prisma.CountryModel
+/**
+ * Model CountryManager
+ * 
+ */
+export type CountryManager = Prisma.CountryManagerModel
+/**
+ * Model CountryTier
+ * 
+ */
+export type CountryTier = Prisma.CountryTierModel
+/**
+ * Model MemberProfile
+ * 
+ */
+export type MemberProfile = Prisma.MemberProfileModel
+/**
+ * Model Organisation
+ * 
+ */
+export type Organisation = Prisma.OrganisationModel
+/**
+ * Model OrganisationSeat
+ * 
+ */
+export type OrganisationSeat = Prisma.OrganisationSeatModel
+/**
+ * Model MentorProfile
+ * 
+ */
+export type MentorProfile = Prisma.MentorProfileModel
+/**
+ * Model MentorMatch
+ * 
+ */
+export type MentorMatch = Prisma.MentorMatchModel
+/**
+ * Model MentorSession
+ * 
+ */
+export type MentorSession = Prisma.MentorSessionModel
+/**
+ * Model Programme
+ * 
+ */
+export type Programme = Prisma.ProgrammeModel
+/**
+ * Model ProgrammeCohort
+ * 
+ */
+export type ProgrammeCohort = Prisma.ProgrammeCohortModel
+/**
+ * Model CohortParticipant
+ * 
+ */
+export type CohortParticipant = Prisma.CohortParticipantModel
+/**
+ * Model Course
+ * 
+ */
+export type Course = Prisma.CourseModel
+/**
+ * Model CourseModule
+ * 
+ */
+export type CourseModule = Prisma.CourseModuleModel
+/**
+ * Model CourseLesson
+ * 
+ */
+export type CourseLesson = Prisma.CourseLessonModel
+/**
+ * Model CohortCourse
+ * 
+ */
+export type CohortCourse = Prisma.CohortCourseModel
+/**
+ * Model CohortMentor
+ * 
+ */
+export type CohortMentor = Prisma.CohortMentorModel
+/**
+ * Model CohortMilestone
+ * 
+ */
+export type CohortMilestone = Prisma.CohortMilestoneModel
+/**
+ * Model MilestoneSubmission
+ * 
+ */
+export type MilestoneSubmission = Prisma.MilestoneSubmissionModel
+/**
+ * Model TierCourse
+ * 
+ */
+export type TierCourse = Prisma.TierCourseModel
+/**
+ * Model Content
+ * 
+ */
+export type Content = Prisma.ContentModel
+/**
+ * Model ContentEnrollment
+ * 
+ */
+export type ContentEnrollment = Prisma.ContentEnrollmentModel
+/**
+ * Model Event
+ * 
+ */
+export type Event = Prisma.EventModel
+/**
+ * Model EventRegistration
+ * 
+ */
+export type EventRegistration = Prisma.EventRegistrationModel
+/**
+ * Model Opportunity
+ * 
+ */
+export type Opportunity = Prisma.OpportunityModel
+/**
+ * Model OpportunityBookmark
+ * 
+ */
+export type OpportunityBookmark = Prisma.OpportunityBookmarkModel
+/**
+ * Model CommunityGroup
+ * 
+ */
+export type CommunityGroup = Prisma.CommunityGroupModel
+/**
+ * Model CommunityGroupMember
+ * 
+ */
+export type CommunityGroupMember = Prisma.CommunityGroupMemberModel
+/**
+ * Model Post
+ * 
+ */
+export type Post = Prisma.PostModel
+/**
+ * Model PhysicalAccessBooking
+ * 
+ */
+export type PhysicalAccessBooking = Prisma.PhysicalAccessBookingModel
+/**
+ * Model Subscription
+ * 
+ */
+export type Subscription = Prisma.SubscriptionModel
+/**
+ * Model Invoice
+ * 
+ */
+export type Invoice = Prisma.InvoiceModel
+/**
+ * Model WaitlistEntry
+ * 
+ */
+export type WaitlistEntry = Prisma.WaitlistEntryModel
+/**
+ * Model FeatureFlag
+ * 
+ */
+export type FeatureFlag = Prisma.FeatureFlagModel
 /**
  * Model Notification
  * 
  */
 export type Notification = Prisma.NotificationModel
+/**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = Prisma.AuditLogModel
 /**
  * Model SystemSetting
  * 

@@ -5,101 +5,43 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/shared/context/AuthContext";
 import { useTheme } from "@/shared/context/ThemeContext";
-import { Bell, ChevronDown, User, Settings, LogOut, Sun, Moon, Check } from "lucide-react";
+import { Bell, ChevronUp, ChevronDown, User, Settings, Moon, Sun, LogOut, ChevronsLeft, ChevronsRight } from "lucide-react";
 
-// ─── Avatar ───────────────────────────────────────────────────────────────────
-function Avatar({ initials, size = 32 }: { initials: string; size?: number }) {
-  return (
-    <div style={{
-      width:           size,
-      height:          size,
-      borderRadius:    "var(--radius-pill)",
-      background:      "linear-gradient(135deg, var(--color-accent), var(--color-accent-hover))",
-      display:         "flex",
-      alignItems:      "center",
-      justifyContent:  "center",
-      fontSize:        size * 0.38,
-      fontWeight:      700,
-      color:           "#fff",
-      flexShrink:      0,
-      letterSpacing:   "-0.01em",
-      userSelect:      "none",
-    }}>
-      {initials}
-    </div>
-  );
+const ROLE_LABELS: Record<string, string> = {
+  SUPER_ADMIN:     "Super Admin",
+  ADMIN:           "Platform Admin",
+  MANAGER:         "Community Manager",
+  CORPORATE_ADMIN: "Corporate Admin",
+  MENTOR:          "Mentor",
+  MEMBER:          "Member",
+};
+
+const ROLE_COLORS: Record<string, string> = {
+  SUPER_ADMIN:     "#c0392b",
+  ADMIN:           "#5b4fcf",
+  MANAGER:         "#1e8c6e",
+  CORPORATE_ADMIN: "#1b5ea6",
+  MENTOR:          "#b86e00",
+  MEMBER:          "#1e8c6e",
+};
+
+interface Props {
+  collapsed: boolean;
+  onToggle: () => void;
 }
 
-// ─── Dropdown item ────────────────────────────────────────────────────────────
-function DropdownItem({
-  icon: Icon, label, onClick, href, danger, extra,
-}: {
-  icon: React.ComponentType<{ size?: number; strokeWidth?: number }>;
-  label: string;
-  onClick?: () => void;
-  href?: string;
-  danger?: boolean;
-  extra?: React.ReactNode;
-}) {
-  const base: React.CSSProperties = {
-    display:     "flex",
-    alignItems:  "center",
-    gap:         "10px",
-    padding:     "8px 12px",
-    borderRadius: "var(--radius-md)",
-    fontSize:    "13.5px",
-    fontWeight:  400,
-    color:       danger ? "var(--color-danger)" : "var(--color-text-secondary)",
-    background:  "transparent",
-    border:      "none",
-    cursor:      "pointer",
-    width:       "100%",
-    textAlign:   "left",
-    textDecoration: "none",
-    transition:  "background var(--transition-fast), color var(--transition-fast)",
-  };
-
-  const hoverBg  = danger ? "var(--color-danger-subtle)" : "var(--color-accent-subtle)";
-  const hoverClr = danger ? "var(--color-danger)"        : "var(--color-text-primary)";
-
-  const handlers = {
-    onMouseEnter: (e: React.MouseEvent<HTMLElement>) => {
-      (e.currentTarget as HTMLElement).style.background = hoverBg;
-      (e.currentTarget as HTMLElement).style.color      = hoverClr;
-    },
-    onMouseLeave: (e: React.MouseEvent<HTMLElement>) => {
-      (e.currentTarget as HTMLElement).style.background = "transparent";
-      (e.currentTarget as HTMLElement).style.color = danger ? "var(--color-danger)" : "var(--color-text-secondary)";
-    },
-  };
-
-  const content = (
-    <>
-      <span style={{ display: "flex", flexShrink: 0 }}><Icon size={15} strokeWidth={1.8} /></span>
-      <span style={{ flex: 1 }}>{label}</span>
-      {extra}
-    </>
-  );
-
-  if (href) {
-    return <Link href={href} style={base} {...handlers}>{content}</Link>;
-  }
-  return <button type="button" style={base} onClick={onClick} {...handlers}>{content}</button>;
-}
-
-// ─── Divider ──────────────────────────────────────────────────────────────────
-function Divider() {
-  return <div style={{ height: "1px", background: "var(--color-border)", margin: "4px 0" }} />;
-}
-
-// ─── TOP NAV ──────────────────────────────────────────────────────────────────
-export default function TopNav() {
+export default function TopNav({ collapsed, onToggle }: Props) {
   const { user, logout } = useAuth();
   const { theme, toggle } = useTheme();
   const router = useRouter();
 
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const ref             = useRef<HTMLDivElement>(null);
+
+  const isDark    = theme === "dark";
+  const role      = user?.role ?? "";
+  const roleLabel = ROLE_LABELS[role] ?? role;
+  const roleColor = ROLE_COLORS[role] ?? "#5b4fcf";
 
   const displayName =
     user?.displayName ||
@@ -114,209 +56,184 @@ export default function TopNav() {
     .toUpperCase()
     .slice(0, 2) || "U";
 
-  // Close dropdown on outside click
   useEffect(() => {
     function handleClick(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setDropdownOpen(false);
-      }
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
     }
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
   const handleLogout = async () => {
-    setDropdownOpen(false);
+    setOpen(false);
     await logout();
-    router.push("/login");
+    router.push("/");
   };
+
+  // ── Theme-aware tokens ──────────────────────────────────────────────────────
+  const navBg         = "var(--color-topnav-bg)";
+  const navBorder     = "var(--color-topnav-border)";
+  const toggleColor   = isDark ? "rgba(255,255,255,0.45)"     : "rgba(0,0,0,0.4)";
+  const toggleHoverBg = isDark ? "rgba(255,255,255,0.06)"     : "rgba(0,0,0,0.05)";
+  const toggleHoverCl = isDark ? "#ffffff"                    : "#000000";
+  const bellColor     = isDark ? "rgba(255,255,255,0.5)"      : "rgba(0,0,0,0.45)";
+  const bellHoverBg   = isDark ? "rgba(255,255,255,0.06)"     : "rgba(0,0,0,0.05)";
+  const bellBorderClr = isDark ? "#1a1a2e"                    : "#ffffff";
+
+  // Pill — always uses the active sidebar item tint
+  const pillBg        = "rgba(91,79,207,0.15)";
+  const pillHoverBg   = "rgba(91,79,207,0.25)";
+  const pillText      = isDark ? "rgba(255,255,255,0.6)"      : "#4b5563";
+
+  // Dropdown card
+  const dropBg        = "var(--color-card-bg)";
+  const dropBorder    = "var(--color-card-border)";
+  const dropShadow    = "var(--color-card-shadow)";
+  const dropDivider   = "var(--color-border)";
+  const dropNameClr   = "var(--color-text-primary)";
+  const dropEmailClr  = "var(--color-text-muted)";
+  const dropIconClr   = "var(--color-text-muted)";
+  const dropLabelClr  = "var(--color-text-secondary)";
+  const dropHoverBg   = isDark ? "rgba(255,255,255,0.05)"     : "#f9fafb";
+  const dropBadgeBg   = isDark ? "rgba(255,255,255,0.08)"     : "#f3f4f6";
+  const dropBadgeClr  = "var(--color-text-muted)";
 
   return (
     <header style={{
       height:          "var(--topnav-height)",
-      backgroundColor: "var(--color-topnav-bg)",
-      borderBottom:    "1px solid var(--color-topnav-border)",
+      backgroundColor: navBg,
+      borderBottom:    `1px dashed ${navBorder}`,
       display:         "flex",
       alignItems:      "center",
-      justifyContent:  "flex-end",
-      padding:         "0 24px",
-      gap:             "8px",
+      justifyContent:  "space-between",
+      padding:         "0 24px 0 16px",
       flexShrink:      0,
       position:        "relative",
       zIndex:          10,
+      transition:      "background-color 0.2s ease",
     }}>
 
-      {/* ── Bell ──────────────────────────────────────────────────────────── */}
-      <Link
-        href="/notifications"
-        style={{
-          position:       "relative",
-          display:        "flex",
-          alignItems:     "center",
-          justifyContent: "center",
-          width:          "36px",
-          height:         "36px",
-          borderRadius:   "var(--radius-md)",
-          color:          "var(--color-text-secondary)",
-          transition:     "background var(--transition-fast), color var(--transition-fast)",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.background = "var(--color-accent-subtle)";
-          e.currentTarget.style.color      = "var(--color-accent)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = "transparent";
-          e.currentTarget.style.color      = "var(--color-text-secondary)";
-        }}
-        title="Notifications"
+      {/* ── Collapse toggle ──────────────────────────────────────────────── */}
+      <button
+        type="button"
+        onClick={onToggle}
+        title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 8, background: "transparent", border: "none", cursor: "pointer", color: toggleColor, transition: "background 0.12s, color 0.12s" }}
+        onMouseEnter={e => { e.currentTarget.style.background = toggleHoverBg; e.currentTarget.style.color = toggleHoverCl; }}
+        onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = toggleColor; }}
       >
-        <Bell size={18} strokeWidth={1.8} />
-        {/* Unread badge — shown when there are notifications */}
-        <span style={{
-          position:    "absolute",
-          top:         "6px",
-          right:       "6px",
-          width:       "7px",
-          height:      "7px",
-          borderRadius: "var(--radius-pill)",
-          background:  "var(--color-accent)",
-          border:      "2px solid var(--color-topnav-bg)",
-        }} />
-      </Link>
+        {collapsed ? <ChevronsRight size={18} strokeWidth={1.8} /> : <ChevronsLeft size={18} strokeWidth={1.8} />}
+      </button>
 
-      {/* ── Divider ───────────────────────────────────────────────────────── */}
-      <div style={{ width: "1px", height: "20px", background: "var(--color-border)" }} />
+      {/* ── Right side ───────────────────────────────────────────────────── */}
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
 
-      {/* ── Avatar + dropdown ─────────────────────────────────────────────── */}
-      <div ref={dropdownRef} style={{ position: "relative" }}>
-        <button
-          type="button"
-          onClick={() => setDropdownOpen((o) => !o)}
-          style={{
-            display:     "flex",
-            alignItems:  "center",
-            gap:         "8px",
-            padding:     "4px 8px 4px 4px",
-            borderRadius: "var(--radius-pill)",
-            background:  dropdownOpen ? "var(--color-accent-subtle)" : "transparent",
-            border:      dropdownOpen
-              ? "1px solid var(--color-accent-border)"
-              : "1px solid transparent",
-            cursor:      "pointer",
-            transition:  "background var(--transition-fast), border-color var(--transition-fast)",
-          }}
-          onMouseEnter={(e) => {
-            if (!dropdownOpen) {
-              e.currentTarget.style.background   = "var(--color-accent-subtle)";
-              e.currentTarget.style.borderColor  = "var(--color-accent-border)";
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (!dropdownOpen) {
-              e.currentTarget.style.background   = "transparent";
-              e.currentTarget.style.borderColor  = "transparent";
-            }
-          }}
+        {/* Bell */}
+        <Link
+          href="/notifications"
+          style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 8, color: bellColor, transition: "background 0.12s, color 0.12s" }}
+          onMouseEnter={e => { e.currentTarget.style.background = bellHoverBg; e.currentTarget.style.color = toggleHoverCl; }}
+          onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = bellColor; }}
+          title="Notifications"
         >
-          <Avatar initials={initials} size={28} />
-          <span style={{
-            fontSize:   "13.5px",
-            fontWeight: 500,
-            color:      "var(--color-text-primary)",
-            maxWidth:   "120px",
-            overflow:   "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap",
-          }}>
-            {displayName}
-          </span>
-          <ChevronDown
-            size={14}
-            strokeWidth={2}
-            style={{
-              color:     "var(--color-text-muted)",
-              transform: dropdownOpen ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform var(--transition-fast)",
-            }}
-          />
-        </button>
+          <Bell size={18} strokeWidth={1.8} />
+          <span style={{ position: "absolute", top: 8, right: 8, width: 7, height: 7, borderRadius: "50%", background: "#5b4fcf", border: `2px solid ${bellBorderClr}` }} />
+        </Link>
 
-        {/* ── Dropdown panel ──────────────────────────────────────────────── */}
-        {dropdownOpen && (
-          <div style={{
-            position:    "absolute",
-            top:         "calc(100% + 8px)",
-            right:       0,
-            minWidth:    "200px",
-            background:  "var(--color-card-bg)",
-            border:      "1px solid var(--color-border)",
-            borderRadius: "var(--radius-lg)",
-            boxShadow:   "var(--color-card-shadow), 0 8px 32px rgba(0,0,0,0.12)",
-            padding:     "6px",
-            zIndex:      100,
-          }}>
-            {/* User info */}
-            <div style={{
-              padding:      "8px 12px 10px",
-              marginBottom: "2px",
-            }}>
-              <div style={{ fontSize: "13px", fontWeight: 600, color: "var(--color-text-primary)" }}>
-                {displayName}
-              </div>
-              <div style={{ fontSize: "11px", color: "var(--color-text-muted)", marginTop: "2px" }}>
-                {user?.email}
-              </div>
+        {/* Pill trigger */}
+        <div ref={ref} style={{ position: "relative" }}>
+          <button
+            type="button"
+            onClick={() => setOpen(o => !o)}
+            style={{ display: "flex", alignItems: "center", gap: 10, padding: "6px 14px 6px 6px", borderRadius: 999, background: pillBg, border: "none", cursor: "pointer", transition: "background 0.12s" }}
+            onMouseEnter={e => (e.currentTarget.style.background = pillHoverBg)}
+            onMouseLeave={e => (e.currentTarget.style.background = pillBg)}
+          >
+            <div style={{ width: 28, height: 28, borderRadius: "50%", background: "#5b4fcf", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <span style={{ color: "#fff", fontWeight: 800, fontSize: 12 }}>{initials}</span>
             </div>
+            <span style={{ color: pillText, fontWeight: 600, fontSize: 13, whiteSpace: "nowrap" }}>{displayName}</span>
+            {open
+              ? <ChevronUp   size={14} strokeWidth={2.5} style={{ color: pillText }} />
+              : <ChevronDown size={14} strokeWidth={2.5} style={{ color: pillText }} />
+            }
+          </button>
 
-            <Divider />
+          {/* Dropdown */}
+          {open && (
+            <div style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, minWidth: 220, background: dropBg, border: `1px solid ${dropBorder}`, borderRadius: 14, boxShadow: dropShadow, padding: "8px", zIndex: 100 }}>
 
-            <DropdownItem
-              icon={User}
-              label="Profile"
-              href="/profile"
-              onClick={() => setDropdownOpen(false)}
-            />
-            <DropdownItem
-              icon={Settings}
-              label="Settings"
-              href="/settings"
-              onClick={() => setDropdownOpen(false)}
-            />
+              {/* User info */}
+              <div style={{ padding: "12px 14px 14px" }}>
+                <div style={{ color: dropNameClr, fontWeight: 700, fontSize: 14 }}>{displayName}</div>
+                <div style={{ color: dropEmailClr, fontSize: 12, marginTop: 2 }}>{user?.email}</div>
+                <div style={{ marginTop: 10 }}>
+                  <span style={{ display: "inline-flex", alignItems: "center", background: "rgba(91,79,207,0.12)", border: "1.5px solid rgba(91,79,207,0.3)", borderRadius: 999, padding: "3px 12px" }}>
+                    <span style={{ color: "#5b4fcf", fontWeight: 700, fontSize: 11, letterSpacing: "0.04em" }}>{role.replace(/_/g, " ")}</span>
+                  </span>
+                </div>
+              </div>
 
-            <Divider />
+              <div style={{ height: 1, background: dropDivider, margin: "0 4px 4px" }} />
 
-            {/* Theme toggle */}
-            <DropdownItem
-              icon={theme === "dark" ? Sun : Moon}
-              label={theme === "dark" ? "Light mode" : "Dark mode"}
-              onClick={() => { toggle(); setDropdownOpen(false); }}
-              extra={
-                <span style={{
-                  fontSize:    "10px",
-                  fontWeight:  600,
-                  color:       "var(--color-accent)",
-                  background:  "var(--color-accent-subtle)",
-                  padding:     "2px 6px",
-                  borderRadius: "var(--radius-pill)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                }}>
-                  {theme === "dark" ? "light" : "dark"}
-                </span>
-              }
-            />
+              <MenuItem icon={<User size={15} strokeWidth={1.8} style={{ color: dropIconClr }}/>}     label="Profile"  labelColor={dropLabelClr} hoverBg={dropHoverBg} onClick={() => { setOpen(false); router.push("/profile"); }} />
+              <MenuItem icon={<Settings size={15} strokeWidth={1.8} style={{ color: dropIconClr }}/>} label="Settings" labelColor={dropLabelClr} hoverBg={dropHoverBg} onClick={() => { setOpen(false); router.push("/settings"); }} />
 
-            <Divider />
+              <div style={{ height: 1, background: dropDivider, margin: "4px" }} />
 
-            <DropdownItem
-              icon={LogOut}
-              label="Sign out"
-              onClick={handleLogout}
-              danger
-            />
-          </div>
-        )}
+              {/* Dark Mode toggle */}
+              <MenuItem
+                icon={isDark
+                  ? <Sun  size={15} strokeWidth={1.8} style={{ color: dropIconClr }}/>
+                  : <Moon size={15} strokeWidth={1.8} style={{ color: dropIconClr }}/>
+                }
+                label="Dark Mode"
+                labelColor={dropLabelClr}
+                hoverBg={dropHoverBg}
+                badge={isDark ? "ON" : "OFF"}
+                badgeBg={dropBadgeBg}
+                badgeColor={dropBadgeClr}
+                onClick={() => { toggle(); }}
+              />
+
+              <div style={{ height: 1, background: dropDivider, margin: "4px" }} />
+
+              <MenuItem icon={<LogOut size={15} strokeWidth={1.8} style={{ color: "#c0392b" }}/>} label="Sign out" labelColor="#c0392b" hoverBg={isDark ? "rgba(192,57,43,0.08)" : "rgba(192,57,43,0.06)"} onClick={handleLogout} />
+            </div>
+          )}
+        </div>
+
       </div>
     </header>
+  );
+}
+
+function MenuItem({ icon, label, onClick, badge, labelColor, hoverBg, badgeBg, badgeColor }: {
+  icon: React.ReactNode;
+  label: string;
+  onClick: () => void;
+  badge?: string;
+  labelColor?: string;
+  hoverBg?: string;
+  badgeBg?: string;
+  badgeColor?: string;
+}) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "9px 12px", borderRadius: 8, background: hovered ? (hoverBg ?? "rgba(255,255,255,0.05)") : "transparent", border: "none", cursor: "pointer", textAlign: "left", transition: "background 0.1s" }}
+    >
+      <span style={{ flexShrink: 0 }}>{icon}</span>
+      <span style={{ flex: 1, color: labelColor ?? "rgba(255,255,255,0.75)", fontSize: 13.5, fontWeight: 500 }}>{label}</span>
+      {badge && (
+        <span style={{ background: badgeBg ?? "rgba(255,255,255,0.08)", color: badgeColor ?? "rgba(255,255,255,0.5)", fontSize: 10, fontWeight: 700, borderRadius: 4, padding: "2px 7px", letterSpacing: "0.04em" }}>
+          {badge}
+        </span>
+      )}
+    </button>
   );
 }

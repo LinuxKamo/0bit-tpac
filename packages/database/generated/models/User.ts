@@ -35,18 +35,17 @@ export type UserMinAggregateOutputType = {
   displayName: string | null
   avatarUrl: string | null
   phone: string | null
+  bio: string | null
   verificationCode: string | null
   verificationExpires: Date | null
   passwordResetToken: string | null
   passwordResetExpires: Date | null
   lastActiveAt: Date | null
-  city: string | null
-  country: string | null
-  language: string | null
-  dateOfBirth: Date | null
   googleId: string | null
   googleRefreshToken: string | null
   invitedById: string | null
+  countryId: string | null
+  organisationId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -62,18 +61,17 @@ export type UserMaxAggregateOutputType = {
   displayName: string | null
   avatarUrl: string | null
   phone: string | null
+  bio: string | null
   verificationCode: string | null
   verificationExpires: Date | null
   passwordResetToken: string | null
   passwordResetExpires: Date | null
   lastActiveAt: Date | null
-  city: string | null
-  country: string | null
-  language: string | null
-  dateOfBirth: Date | null
   googleId: string | null
   googleRefreshToken: string | null
   invitedById: string | null
+  countryId: string | null
+  organisationId: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -89,18 +87,17 @@ export type UserCountAggregateOutputType = {
   displayName: number
   avatarUrl: number
   phone: number
+  bio: number
   verificationCode: number
   verificationExpires: number
   passwordResetToken: number
   passwordResetExpires: number
   lastActiveAt: number
-  city: number
-  country: number
-  language: number
-  dateOfBirth: number
   googleId: number
   googleRefreshToken: number
   invitedById: number
+  countryId: number
+  organisationId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -118,18 +115,17 @@ export type UserMinAggregateInputType = {
   displayName?: true
   avatarUrl?: true
   phone?: true
+  bio?: true
   verificationCode?: true
   verificationExpires?: true
   passwordResetToken?: true
   passwordResetExpires?: true
   lastActiveAt?: true
-  city?: true
-  country?: true
-  language?: true
-  dateOfBirth?: true
   googleId?: true
   googleRefreshToken?: true
   invitedById?: true
+  countryId?: true
+  organisationId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -145,18 +141,17 @@ export type UserMaxAggregateInputType = {
   displayName?: true
   avatarUrl?: true
   phone?: true
+  bio?: true
   verificationCode?: true
   verificationExpires?: true
   passwordResetToken?: true
   passwordResetExpires?: true
   lastActiveAt?: true
-  city?: true
-  country?: true
-  language?: true
-  dateOfBirth?: true
   googleId?: true
   googleRefreshToken?: true
   invitedById?: true
+  countryId?: true
+  organisationId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -172,18 +167,17 @@ export type UserCountAggregateInputType = {
   displayName?: true
   avatarUrl?: true
   phone?: true
+  bio?: true
   verificationCode?: true
   verificationExpires?: true
   passwordResetToken?: true
   passwordResetExpires?: true
   lastActiveAt?: true
-  city?: true
-  country?: true
-  language?: true
-  dateOfBirth?: true
   googleId?: true
   googleRefreshToken?: true
   invitedById?: true
+  countryId?: true
+  organisationId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -272,18 +266,17 @@ export type UserGroupByOutputType = {
   displayName: string | null
   avatarUrl: string | null
   phone: string | null
+  bio: string | null
   verificationCode: string | null
   verificationExpires: Date | null
   passwordResetToken: string | null
   passwordResetExpires: Date | null
   lastActiveAt: Date | null
-  city: string | null
-  country: string | null
-  language: string | null
-  dateOfBirth: Date | null
   googleId: string | null
   googleRefreshToken: string | null
   invitedById: string | null
+  countryId: string | null
+  organisationId: string | null
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -320,22 +313,46 @@ export type UserWhereInput = {
   displayName?: Prisma.StringNullableFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   phone?: Prisma.StringNullableFilter<"User"> | string | null
+  bio?: Prisma.StringNullableFilter<"User"> | string | null
   verificationCode?: Prisma.StringNullableFilter<"User"> | string | null
   verificationExpires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   passwordResetToken?: Prisma.StringNullableFilter<"User"> | string | null
   passwordResetExpires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   lastActiveAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  city?: Prisma.StringNullableFilter<"User"> | string | null
-  country?: Prisma.StringNullableFilter<"User"> | string | null
-  language?: Prisma.StringNullableFilter<"User"> | string | null
-  dateOfBirth?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   googleId?: Prisma.StringNullableFilter<"User"> | string | null
   googleRefreshToken?: Prisma.StringNullableFilter<"User"> | string | null
   invitedById?: Prisma.StringNullableFilter<"User"> | string | null
+  countryId?: Prisma.StringNullableFilter<"User"> | string | null
+  organisationId?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   invitedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   invitees?: Prisma.UserListRelationFilter
+  country?: Prisma.XOR<Prisma.CountryNullableScalarRelationFilter, Prisma.CountryWhereInput> | null
+  organisation?: Prisma.XOR<Prisma.OrganisationNullableScalarRelationFilter, Prisma.OrganisationWhereInput> | null
+  memberProfile?: Prisma.XOR<Prisma.MemberProfileNullableScalarRelationFilter, Prisma.MemberProfileWhereInput> | null
+  mentorProfile?: Prisma.XOR<Prisma.MentorProfileNullableScalarRelationFilter, Prisma.MentorProfileWhereInput> | null
+  managedCountries?: Prisma.CountryManagerListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
+  contentEnrollments?: Prisma.ContentEnrollmentListRelationFilter
+  eventRegistrations?: Prisma.EventRegistrationListRelationFilter
+  opportunityBookmarks?: Prisma.OpportunityBookmarkListRelationFilter
+  physicalBookings?: Prisma.PhysicalAccessBookingListRelationFilter
+  waitlistEntries?: Prisma.WaitlistEntryListRelationFilter
+  communityMemberships?: Prisma.CommunityGroupMemberListRelationFilter
+  posts?: Prisma.PostListRelationFilter
+  organisationSeats?: Prisma.OrganisationSeatListRelationFilter
+  cohortParticipations?: Prisma.CohortParticipantListRelationFilter
+  createdCohorts?: Prisma.ProgrammeCohortListRelationFilter
+  cohortMentorships?: Prisma.CohortMentorListRelationFilter
+  createdCourses?: Prisma.CourseListRelationFilter
+  reviewedCourses?: Prisma.CourseListRelationFilter
+  milestoneSubmissions?: Prisma.MilestoneSubmissionListRelationFilter
+  milestoneReviews?: Prisma.MilestoneSubmissionListRelationFilter
+  mentorMatches?: Prisma.MentorMatchListRelationFilter
+  menteeMatches?: Prisma.MentorMatchListRelationFilter
+  sessionsAsMentor?: Prisma.MentorSessionListRelationFilter
+  sessionsAsMentee?: Prisma.MentorSessionListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
 }
@@ -351,22 +368,46 @@ export type UserOrderByWithRelationInput = {
   displayName?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
   verificationCode?: Prisma.SortOrderInput | Prisma.SortOrder
   verificationExpires?: Prisma.SortOrderInput | Prisma.SortOrder
   passwordResetToken?: Prisma.SortOrderInput | Prisma.SortOrder
   passwordResetExpires?: Prisma.SortOrderInput | Prisma.SortOrder
   lastActiveAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  city?: Prisma.SortOrderInput | Prisma.SortOrder
-  country?: Prisma.SortOrderInput | Prisma.SortOrder
-  language?: Prisma.SortOrderInput | Prisma.SortOrder
-  dateOfBirth?: Prisma.SortOrderInput | Prisma.SortOrder
   googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   googleRefreshToken?: Prisma.SortOrderInput | Prisma.SortOrder
   invitedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  countryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  organisationId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   invitedBy?: Prisma.UserOrderByWithRelationInput
   invitees?: Prisma.UserOrderByRelationAggregateInput
+  country?: Prisma.CountryOrderByWithRelationInput
+  organisation?: Prisma.OrganisationOrderByWithRelationInput
+  memberProfile?: Prisma.MemberProfileOrderByWithRelationInput
+  mentorProfile?: Prisma.MentorProfileOrderByWithRelationInput
+  managedCountries?: Prisma.CountryManagerOrderByRelationAggregateInput
+  subscriptions?: Prisma.SubscriptionOrderByRelationAggregateInput
+  contentEnrollments?: Prisma.ContentEnrollmentOrderByRelationAggregateInput
+  eventRegistrations?: Prisma.EventRegistrationOrderByRelationAggregateInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkOrderByRelationAggregateInput
+  physicalBookings?: Prisma.PhysicalAccessBookingOrderByRelationAggregateInput
+  waitlistEntries?: Prisma.WaitlistEntryOrderByRelationAggregateInput
+  communityMemberships?: Prisma.CommunityGroupMemberOrderByRelationAggregateInput
+  posts?: Prisma.PostOrderByRelationAggregateInput
+  organisationSeats?: Prisma.OrganisationSeatOrderByRelationAggregateInput
+  cohortParticipations?: Prisma.CohortParticipantOrderByRelationAggregateInput
+  createdCohorts?: Prisma.ProgrammeCohortOrderByRelationAggregateInput
+  cohortMentorships?: Prisma.CohortMentorOrderByRelationAggregateInput
+  createdCourses?: Prisma.CourseOrderByRelationAggregateInput
+  reviewedCourses?: Prisma.CourseOrderByRelationAggregateInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionOrderByRelationAggregateInput
+  milestoneReviews?: Prisma.MilestoneSubmissionOrderByRelationAggregateInput
+  mentorMatches?: Prisma.MentorMatchOrderByRelationAggregateInput
+  menteeMatches?: Prisma.MentorMatchOrderByRelationAggregateInput
+  sessionsAsMentor?: Prisma.MentorSessionOrderByRelationAggregateInput
+  sessionsAsMentee?: Prisma.MentorSessionOrderByRelationAggregateInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
 }
@@ -386,21 +427,45 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   displayName?: Prisma.StringNullableFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   phone?: Prisma.StringNullableFilter<"User"> | string | null
+  bio?: Prisma.StringNullableFilter<"User"> | string | null
   verificationCode?: Prisma.StringNullableFilter<"User"> | string | null
   verificationExpires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   passwordResetToken?: Prisma.StringNullableFilter<"User"> | string | null
   passwordResetExpires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   lastActiveAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  city?: Prisma.StringNullableFilter<"User"> | string | null
-  country?: Prisma.StringNullableFilter<"User"> | string | null
-  language?: Prisma.StringNullableFilter<"User"> | string | null
-  dateOfBirth?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   googleRefreshToken?: Prisma.StringNullableFilter<"User"> | string | null
   invitedById?: Prisma.StringNullableFilter<"User"> | string | null
+  countryId?: Prisma.StringNullableFilter<"User"> | string | null
+  organisationId?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   invitedBy?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   invitees?: Prisma.UserListRelationFilter
+  country?: Prisma.XOR<Prisma.CountryNullableScalarRelationFilter, Prisma.CountryWhereInput> | null
+  organisation?: Prisma.XOR<Prisma.OrganisationNullableScalarRelationFilter, Prisma.OrganisationWhereInput> | null
+  memberProfile?: Prisma.XOR<Prisma.MemberProfileNullableScalarRelationFilter, Prisma.MemberProfileWhereInput> | null
+  mentorProfile?: Prisma.XOR<Prisma.MentorProfileNullableScalarRelationFilter, Prisma.MentorProfileWhereInput> | null
+  managedCountries?: Prisma.CountryManagerListRelationFilter
+  subscriptions?: Prisma.SubscriptionListRelationFilter
+  contentEnrollments?: Prisma.ContentEnrollmentListRelationFilter
+  eventRegistrations?: Prisma.EventRegistrationListRelationFilter
+  opportunityBookmarks?: Prisma.OpportunityBookmarkListRelationFilter
+  physicalBookings?: Prisma.PhysicalAccessBookingListRelationFilter
+  waitlistEntries?: Prisma.WaitlistEntryListRelationFilter
+  communityMemberships?: Prisma.CommunityGroupMemberListRelationFilter
+  posts?: Prisma.PostListRelationFilter
+  organisationSeats?: Prisma.OrganisationSeatListRelationFilter
+  cohortParticipations?: Prisma.CohortParticipantListRelationFilter
+  createdCohorts?: Prisma.ProgrammeCohortListRelationFilter
+  cohortMentorships?: Prisma.CohortMentorListRelationFilter
+  createdCourses?: Prisma.CourseListRelationFilter
+  reviewedCourses?: Prisma.CourseListRelationFilter
+  milestoneSubmissions?: Prisma.MilestoneSubmissionListRelationFilter
+  milestoneReviews?: Prisma.MilestoneSubmissionListRelationFilter
+  mentorMatches?: Prisma.MentorMatchListRelationFilter
+  menteeMatches?: Prisma.MentorMatchListRelationFilter
+  sessionsAsMentor?: Prisma.MentorSessionListRelationFilter
+  sessionsAsMentee?: Prisma.MentorSessionListRelationFilter
   auditLogs?: Prisma.AuditLogListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
 }, "id" | "email" | "googleId">
@@ -416,18 +481,17 @@ export type UserOrderByWithAggregationInput = {
   displayName?: Prisma.SortOrderInput | Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  bio?: Prisma.SortOrderInput | Prisma.SortOrder
   verificationCode?: Prisma.SortOrderInput | Prisma.SortOrder
   verificationExpires?: Prisma.SortOrderInput | Prisma.SortOrder
   passwordResetToken?: Prisma.SortOrderInput | Prisma.SortOrder
   passwordResetExpires?: Prisma.SortOrderInput | Prisma.SortOrder
   lastActiveAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  city?: Prisma.SortOrderInput | Prisma.SortOrder
-  country?: Prisma.SortOrderInput | Prisma.SortOrder
-  language?: Prisma.SortOrderInput | Prisma.SortOrder
-  dateOfBirth?: Prisma.SortOrderInput | Prisma.SortOrder
   googleId?: Prisma.SortOrderInput | Prisma.SortOrder
   googleRefreshToken?: Prisma.SortOrderInput | Prisma.SortOrder
   invitedById?: Prisma.SortOrderInput | Prisma.SortOrder
+  countryId?: Prisma.SortOrderInput | Prisma.SortOrder
+  organisationId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -449,18 +513,17 @@ export type UserScalarWhereWithAggregatesInput = {
   displayName?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  bio?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   verificationCode?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   verificationExpires?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   passwordResetToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   passwordResetExpires?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   lastActiveAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
-  city?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  country?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  language?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  dateOfBirth?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   googleId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   googleRefreshToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   invitedById?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  countryId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  organisationId?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -476,21 +539,43 @@ export type UserCreateInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
   invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
@@ -506,21 +591,43 @@ export type UserUncheckedCreateInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
   invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
@@ -536,21 +643,43 @@ export type UserUpdateInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
   invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
@@ -566,21 +695,43 @@ export type UserUncheckedUpdateInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -596,18 +747,17 @@ export type UserCreateManyInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
   invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -623,15 +773,12 @@ export type UserUpdateManyMutationInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -649,18 +796,17 @@ export type UserUncheckedUpdateManyInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -691,18 +837,17 @@ export type UserCountOrderByAggregateInput = {
   displayName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   verificationCode?: Prisma.SortOrder
   verificationExpires?: Prisma.SortOrder
   passwordResetToken?: Prisma.SortOrder
   passwordResetExpires?: Prisma.SortOrder
   lastActiveAt?: Prisma.SortOrder
-  city?: Prisma.SortOrder
-  country?: Prisma.SortOrder
-  language?: Prisma.SortOrder
-  dateOfBirth?: Prisma.SortOrder
   googleId?: Prisma.SortOrder
   googleRefreshToken?: Prisma.SortOrder
   invitedById?: Prisma.SortOrder
+  countryId?: Prisma.SortOrder
+  organisationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -718,18 +863,17 @@ export type UserMaxOrderByAggregateInput = {
   displayName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   verificationCode?: Prisma.SortOrder
   verificationExpires?: Prisma.SortOrder
   passwordResetToken?: Prisma.SortOrder
   passwordResetExpires?: Prisma.SortOrder
   lastActiveAt?: Prisma.SortOrder
-  city?: Prisma.SortOrder
-  country?: Prisma.SortOrder
-  language?: Prisma.SortOrder
-  dateOfBirth?: Prisma.SortOrder
   googleId?: Prisma.SortOrder
   googleRefreshToken?: Prisma.SortOrder
   invitedById?: Prisma.SortOrder
+  countryId?: Prisma.SortOrder
+  organisationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -745,18 +889,17 @@ export type UserMinOrderByAggregateInput = {
   displayName?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   phone?: Prisma.SortOrder
+  bio?: Prisma.SortOrder
   verificationCode?: Prisma.SortOrder
   verificationExpires?: Prisma.SortOrder
   passwordResetToken?: Prisma.SortOrder
   passwordResetExpires?: Prisma.SortOrder
   lastActiveAt?: Prisma.SortOrder
-  city?: Prisma.SortOrder
-  country?: Prisma.SortOrder
-  language?: Prisma.SortOrder
-  dateOfBirth?: Prisma.SortOrder
   googleId?: Prisma.SortOrder
   googleRefreshToken?: Prisma.SortOrder
   invitedById?: Prisma.SortOrder
+  countryId?: Prisma.SortOrder
+  organisationId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -848,18 +991,420 @@ export type UserUncheckedUpdateManyWithoutInvitedByNestedInput = {
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
-export type UserCreateNestedOneWithoutAuditLogsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
+export type UserCreateNestedManyWithoutCountryInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCountryInput, Prisma.UserUncheckedCreateWithoutCountryInput> | Prisma.UserCreateWithoutCountryInput[] | Prisma.UserUncheckedCreateWithoutCountryInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCountryInput | Prisma.UserCreateOrConnectWithoutCountryInput[]
+  createMany?: Prisma.UserCreateManyCountryInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUncheckedCreateNestedManyWithoutCountryInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCountryInput, Prisma.UserUncheckedCreateWithoutCountryInput> | Prisma.UserCreateWithoutCountryInput[] | Prisma.UserUncheckedCreateWithoutCountryInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCountryInput | Prisma.UserCreateOrConnectWithoutCountryInput[]
+  createMany?: Prisma.UserCreateManyCountryInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUpdateManyWithoutCountryNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCountryInput, Prisma.UserUncheckedCreateWithoutCountryInput> | Prisma.UserCreateWithoutCountryInput[] | Prisma.UserUncheckedCreateWithoutCountryInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCountryInput | Prisma.UserCreateOrConnectWithoutCountryInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCountryInput | Prisma.UserUpsertWithWhereUniqueWithoutCountryInput[]
+  createMany?: Prisma.UserCreateManyCountryInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutCountryInput | Prisma.UserUpdateWithWhereUniqueWithoutCountryInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCountryInput | Prisma.UserUpdateManyWithWhereWithoutCountryInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserUncheckedUpdateManyWithoutCountryNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCountryInput, Prisma.UserUncheckedCreateWithoutCountryInput> | Prisma.UserCreateWithoutCountryInput[] | Prisma.UserUncheckedCreateWithoutCountryInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCountryInput | Prisma.UserCreateOrConnectWithoutCountryInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCountryInput | Prisma.UserUpsertWithWhereUniqueWithoutCountryInput[]
+  createMany?: Prisma.UserCreateManyCountryInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutCountryInput | Prisma.UserUpdateWithWhereUniqueWithoutCountryInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCountryInput | Prisma.UserUpdateManyWithWhereWithoutCountryInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserCreateNestedOneWithoutManagedCountriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutManagedCountriesInput, Prisma.UserUncheckedCreateWithoutManagedCountriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutManagedCountriesInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutAuditLogsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
-  upsert?: Prisma.UserUpsertWithoutAuditLogsInput
+export type UserUpdateOneRequiredWithoutManagedCountriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutManagedCountriesInput, Prisma.UserUncheckedCreateWithoutManagedCountriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutManagedCountriesInput
+  upsert?: Prisma.UserUpsertWithoutManagedCountriesInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.UserUpdateWithoutAuditLogsInput>, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutManagedCountriesInput, Prisma.UserUpdateWithoutManagedCountriesInput>, Prisma.UserUncheckedUpdateWithoutManagedCountriesInput>
+}
+
+export type UserCreateNestedOneWithoutMemberProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMemberProfileInput, Prisma.UserUncheckedCreateWithoutMemberProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMemberProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMemberProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMemberProfileInput, Prisma.UserUncheckedCreateWithoutMemberProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMemberProfileInput
+  upsert?: Prisma.UserUpsertWithoutMemberProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMemberProfileInput, Prisma.UserUpdateWithoutMemberProfileInput>, Prisma.UserUncheckedUpdateWithoutMemberProfileInput>
+}
+
+export type UserCreateNestedManyWithoutOrganisationInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrganisationInput, Prisma.UserUncheckedCreateWithoutOrganisationInput> | Prisma.UserCreateWithoutOrganisationInput[] | Prisma.UserUncheckedCreateWithoutOrganisationInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrganisationInput | Prisma.UserCreateOrConnectWithoutOrganisationInput[]
+  createMany?: Prisma.UserCreateManyOrganisationInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUncheckedCreateNestedManyWithoutOrganisationInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrganisationInput, Prisma.UserUncheckedCreateWithoutOrganisationInput> | Prisma.UserCreateWithoutOrganisationInput[] | Prisma.UserUncheckedCreateWithoutOrganisationInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrganisationInput | Prisma.UserCreateOrConnectWithoutOrganisationInput[]
+  createMany?: Prisma.UserCreateManyOrganisationInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUpdateManyWithoutOrganisationNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrganisationInput, Prisma.UserUncheckedCreateWithoutOrganisationInput> | Prisma.UserCreateWithoutOrganisationInput[] | Prisma.UserUncheckedCreateWithoutOrganisationInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrganisationInput | Prisma.UserCreateOrConnectWithoutOrganisationInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutOrganisationInput | Prisma.UserUpsertWithWhereUniqueWithoutOrganisationInput[]
+  createMany?: Prisma.UserCreateManyOrganisationInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutOrganisationInput | Prisma.UserUpdateWithWhereUniqueWithoutOrganisationInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutOrganisationInput | Prisma.UserUpdateManyWithWhereWithoutOrganisationInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserUncheckedUpdateManyWithoutOrganisationNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrganisationInput, Prisma.UserUncheckedCreateWithoutOrganisationInput> | Prisma.UserCreateWithoutOrganisationInput[] | Prisma.UserUncheckedCreateWithoutOrganisationInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrganisationInput | Prisma.UserCreateOrConnectWithoutOrganisationInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutOrganisationInput | Prisma.UserUpsertWithWhereUniqueWithoutOrganisationInput[]
+  createMany?: Prisma.UserCreateManyOrganisationInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutOrganisationInput | Prisma.UserUpdateWithWhereUniqueWithoutOrganisationInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutOrganisationInput | Prisma.UserUpdateManyWithWhereWithoutOrganisationInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserCreateNestedOneWithoutOrganisationSeatsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrganisationSeatsInput, Prisma.UserUncheckedCreateWithoutOrganisationSeatsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrganisationSeatsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutOrganisationSeatsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOrganisationSeatsInput, Prisma.UserUncheckedCreateWithoutOrganisationSeatsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrganisationSeatsInput
+  upsert?: Prisma.UserUpsertWithoutOrganisationSeatsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrganisationSeatsInput, Prisma.UserUpdateWithoutOrganisationSeatsInput>, Prisma.UserUncheckedUpdateWithoutOrganisationSeatsInput>
+}
+
+export type UserCreateNestedOneWithoutMentorProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMentorProfileInput, Prisma.UserUncheckedCreateWithoutMentorProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentorProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMentorProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMentorProfileInput, Prisma.UserUncheckedCreateWithoutMentorProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentorProfileInput
+  upsert?: Prisma.UserUpsertWithoutMentorProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMentorProfileInput, Prisma.UserUpdateWithoutMentorProfileInput>, Prisma.UserUncheckedUpdateWithoutMentorProfileInput>
+}
+
+export type UserCreateNestedOneWithoutMentorMatchesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMentorMatchesInput, Prisma.UserUncheckedCreateWithoutMentorMatchesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentorMatchesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutMenteeMatchesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMenteeMatchesInput, Prisma.UserUncheckedCreateWithoutMenteeMatchesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMenteeMatchesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMentorMatchesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMentorMatchesInput, Prisma.UserUncheckedCreateWithoutMentorMatchesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMentorMatchesInput
+  upsert?: Prisma.UserUpsertWithoutMentorMatchesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMentorMatchesInput, Prisma.UserUpdateWithoutMentorMatchesInput>, Prisma.UserUncheckedUpdateWithoutMentorMatchesInput>
+}
+
+export type UserUpdateOneRequiredWithoutMenteeMatchesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMenteeMatchesInput, Prisma.UserUncheckedCreateWithoutMenteeMatchesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMenteeMatchesInput
+  upsert?: Prisma.UserUpsertWithoutMenteeMatchesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMenteeMatchesInput, Prisma.UserUpdateWithoutMenteeMatchesInput>, Prisma.UserUncheckedUpdateWithoutMenteeMatchesInput>
+}
+
+export type UserCreateNestedOneWithoutSessionsAsMentorInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSessionsAsMentorInput, Prisma.UserUncheckedCreateWithoutSessionsAsMentorInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSessionsAsMentorInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutSessionsAsMenteeInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSessionsAsMenteeInput, Prisma.UserUncheckedCreateWithoutSessionsAsMenteeInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSessionsAsMenteeInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSessionsAsMentorNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSessionsAsMentorInput, Prisma.UserUncheckedCreateWithoutSessionsAsMentorInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSessionsAsMentorInput
+  upsert?: Prisma.UserUpsertWithoutSessionsAsMentorInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSessionsAsMentorInput, Prisma.UserUpdateWithoutSessionsAsMentorInput>, Prisma.UserUncheckedUpdateWithoutSessionsAsMentorInput>
+}
+
+export type UserUpdateOneRequiredWithoutSessionsAsMenteeNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSessionsAsMenteeInput, Prisma.UserUncheckedCreateWithoutSessionsAsMenteeInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSessionsAsMenteeInput
+  upsert?: Prisma.UserUpsertWithoutSessionsAsMenteeInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSessionsAsMenteeInput, Prisma.UserUpdateWithoutSessionsAsMenteeInput>, Prisma.UserUncheckedUpdateWithoutSessionsAsMenteeInput>
+}
+
+export type UserCreateNestedOneWithoutCreatedCohortsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedCohortsInput, Prisma.UserUncheckedCreateWithoutCreatedCohortsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedCohortsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedCohortsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedCohortsInput, Prisma.UserUncheckedCreateWithoutCreatedCohortsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedCohortsInput
+  upsert?: Prisma.UserUpsertWithoutCreatedCohortsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedCohortsInput, Prisma.UserUpdateWithoutCreatedCohortsInput>, Prisma.UserUncheckedUpdateWithoutCreatedCohortsInput>
+}
+
+export type UserCreateNestedOneWithoutCohortParticipationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCohortParticipationsInput, Prisma.UserUncheckedCreateWithoutCohortParticipationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCohortParticipationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCohortParticipationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCohortParticipationsInput, Prisma.UserUncheckedCreateWithoutCohortParticipationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCohortParticipationsInput
+  upsert?: Prisma.UserUpsertWithoutCohortParticipationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCohortParticipationsInput, Prisma.UserUpdateWithoutCohortParticipationsInput>, Prisma.UserUncheckedUpdateWithoutCohortParticipationsInput>
+}
+
+export type UserCreateNestedOneWithoutCreatedCoursesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedCoursesInput, Prisma.UserUncheckedCreateWithoutCreatedCoursesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedCoursesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutReviewedCoursesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedCoursesInput, Prisma.UserUncheckedCreateWithoutReviewedCoursesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedCoursesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCreatedCoursesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedCoursesInput, Prisma.UserUncheckedCreateWithoutCreatedCoursesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedCoursesInput
+  upsert?: Prisma.UserUpsertWithoutCreatedCoursesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedCoursesInput, Prisma.UserUpdateWithoutCreatedCoursesInput>, Prisma.UserUncheckedUpdateWithoutCreatedCoursesInput>
+}
+
+export type UserUpdateOneWithoutReviewedCoursesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewedCoursesInput, Prisma.UserUncheckedCreateWithoutReviewedCoursesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewedCoursesInput
+  upsert?: Prisma.UserUpsertWithoutReviewedCoursesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewedCoursesInput, Prisma.UserUpdateWithoutReviewedCoursesInput>, Prisma.UserUncheckedUpdateWithoutReviewedCoursesInput>
+}
+
+export type UserCreateNestedOneWithoutCohortMentorshipsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCohortMentorshipsInput, Prisma.UserUncheckedCreateWithoutCohortMentorshipsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCohortMentorshipsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCohortMentorshipsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCohortMentorshipsInput, Prisma.UserUncheckedCreateWithoutCohortMentorshipsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCohortMentorshipsInput
+  upsert?: Prisma.UserUpsertWithoutCohortMentorshipsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCohortMentorshipsInput, Prisma.UserUpdateWithoutCohortMentorshipsInput>, Prisma.UserUncheckedUpdateWithoutCohortMentorshipsInput>
+}
+
+export type UserCreateNestedOneWithoutMilestoneSubmissionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMilestoneSubmissionsInput, Prisma.UserUncheckedCreateWithoutMilestoneSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMilestoneSubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutMilestoneReviewsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMilestoneReviewsInput, Prisma.UserUncheckedCreateWithoutMilestoneReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMilestoneReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMilestoneSubmissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMilestoneSubmissionsInput, Prisma.UserUncheckedCreateWithoutMilestoneSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMilestoneSubmissionsInput
+  upsert?: Prisma.UserUpsertWithoutMilestoneSubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMilestoneSubmissionsInput, Prisma.UserUpdateWithoutMilestoneSubmissionsInput>, Prisma.UserUncheckedUpdateWithoutMilestoneSubmissionsInput>
+}
+
+export type UserUpdateOneWithoutMilestoneReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMilestoneReviewsInput, Prisma.UserUncheckedCreateWithoutMilestoneReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMilestoneReviewsInput
+  upsert?: Prisma.UserUpsertWithoutMilestoneReviewsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMilestoneReviewsInput, Prisma.UserUpdateWithoutMilestoneReviewsInput>, Prisma.UserUncheckedUpdateWithoutMilestoneReviewsInput>
+}
+
+export type UserCreateNestedOneWithoutContentEnrollmentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutContentEnrollmentsInput, Prisma.UserUncheckedCreateWithoutContentEnrollmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutContentEnrollmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutContentEnrollmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutContentEnrollmentsInput, Prisma.UserUncheckedCreateWithoutContentEnrollmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutContentEnrollmentsInput
+  upsert?: Prisma.UserUpsertWithoutContentEnrollmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutContentEnrollmentsInput, Prisma.UserUpdateWithoutContentEnrollmentsInput>, Prisma.UserUncheckedUpdateWithoutContentEnrollmentsInput>
+}
+
+export type UserCreateNestedOneWithoutEventRegistrationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEventRegistrationsInput, Prisma.UserUncheckedCreateWithoutEventRegistrationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEventRegistrationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutEventRegistrationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutEventRegistrationsInput, Prisma.UserUncheckedCreateWithoutEventRegistrationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutEventRegistrationsInput
+  upsert?: Prisma.UserUpsertWithoutEventRegistrationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutEventRegistrationsInput, Prisma.UserUpdateWithoutEventRegistrationsInput>, Prisma.UserUncheckedUpdateWithoutEventRegistrationsInput>
+}
+
+export type UserCreateNestedOneWithoutOpportunityBookmarksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOpportunityBookmarksInput, Prisma.UserUncheckedCreateWithoutOpportunityBookmarksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOpportunityBookmarksInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutOpportunityBookmarksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOpportunityBookmarksInput, Prisma.UserUncheckedCreateWithoutOpportunityBookmarksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOpportunityBookmarksInput
+  upsert?: Prisma.UserUpsertWithoutOpportunityBookmarksInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOpportunityBookmarksInput, Prisma.UserUpdateWithoutOpportunityBookmarksInput>, Prisma.UserUncheckedUpdateWithoutOpportunityBookmarksInput>
+}
+
+export type UserCreateNestedOneWithoutCommunityMembershipsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCommunityMembershipsInput, Prisma.UserUncheckedCreateWithoutCommunityMembershipsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommunityMembershipsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCommunityMembershipsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCommunityMembershipsInput, Prisma.UserUncheckedCreateWithoutCommunityMembershipsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommunityMembershipsInput
+  upsert?: Prisma.UserUpsertWithoutCommunityMembershipsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCommunityMembershipsInput, Prisma.UserUpdateWithoutCommunityMembershipsInput>, Prisma.UserUncheckedUpdateWithoutCommunityMembershipsInput>
+}
+
+export type UserCreateNestedOneWithoutPostsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPostsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPostsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPostsInput
+  upsert?: Prisma.UserUpsertWithoutPostsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPostsInput, Prisma.UserUpdateWithoutPostsInput>, Prisma.UserUncheckedUpdateWithoutPostsInput>
+}
+
+export type UserCreateNestedOneWithoutPhysicalBookingsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPhysicalBookingsInput, Prisma.UserUncheckedCreateWithoutPhysicalBookingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPhysicalBookingsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPhysicalBookingsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPhysicalBookingsInput, Prisma.UserUncheckedCreateWithoutPhysicalBookingsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPhysicalBookingsInput
+  upsert?: Prisma.UserUpsertWithoutPhysicalBookingsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPhysicalBookingsInput, Prisma.UserUpdateWithoutPhysicalBookingsInput>, Prisma.UserUncheckedUpdateWithoutPhysicalBookingsInput>
+}
+
+export type UserCreateNestedOneWithoutSubscriptionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSubscriptionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionsInput
+  upsert?: Prisma.UserUpsertWithoutSubscriptionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.UserUpdateWithoutSubscriptionsInput>, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
+}
+
+export type UserCreateNestedOneWithoutWaitlistEntriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWaitlistEntriesInput, Prisma.UserUncheckedCreateWithoutWaitlistEntriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWaitlistEntriesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutWaitlistEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutWaitlistEntriesInput, Prisma.UserUncheckedCreateWithoutWaitlistEntriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutWaitlistEntriesInput
+  upsert?: Prisma.UserUpsertWithoutWaitlistEntriesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutWaitlistEntriesInput, Prisma.UserUpdateWithoutWaitlistEntriesInput>, Prisma.UserUncheckedUpdateWithoutWaitlistEntriesInput>
 }
 
 export type UserCreateNestedOneWithoutNotificationsInput = {
@@ -876,6 +1421,20 @@ export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationsInput, Prisma.UserUpdateWithoutNotificationsInput>, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
 }
 
+export type UserCreateNestedOneWithoutAuditLogsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAuditLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
+  upsert?: Prisma.UserUpsertWithoutAuditLogsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.UserUpdateWithoutAuditLogsInput>, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+}
+
 export type UserCreateWithoutInviteesInput = {
   id?: string
   email: string
@@ -887,20 +1446,42 @@ export type UserCreateWithoutInviteesInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
@@ -916,20 +1497,42 @@ export type UserUncheckedCreateWithoutInviteesInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
   invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
@@ -950,20 +1553,42 @@ export type UserCreateWithoutInvitedByInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
@@ -979,20 +1604,42 @@ export type UserUncheckedCreateWithoutInvitedByInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
+  countryId?: string | null
+  organisationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
@@ -1029,20 +1676,42 @@ export type UserUpdateWithoutInviteesInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
@@ -1058,20 +1727,42 @@ export type UserUncheckedUpdateWithoutInviteesInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -1106,23 +1797,22 @@ export type UserScalarWhereInput = {
   displayName?: Prisma.StringNullableFilter<"User"> | string | null
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   phone?: Prisma.StringNullableFilter<"User"> | string | null
+  bio?: Prisma.StringNullableFilter<"User"> | string | null
   verificationCode?: Prisma.StringNullableFilter<"User"> | string | null
   verificationExpires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   passwordResetToken?: Prisma.StringNullableFilter<"User"> | string | null
   passwordResetExpires?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   lastActiveAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  city?: Prisma.StringNullableFilter<"User"> | string | null
-  country?: Prisma.StringNullableFilter<"User"> | string | null
-  language?: Prisma.StringNullableFilter<"User"> | string | null
-  dateOfBirth?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   googleId?: Prisma.StringNullableFilter<"User"> | string | null
   googleRefreshToken?: Prisma.StringNullableFilter<"User"> | string | null
   invitedById?: Prisma.StringNullableFilter<"User"> | string | null
+  countryId?: Prisma.StringNullableFilter<"User"> | string | null
+  organisationId?: Prisma.StringNullableFilter<"User"> | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
 }
 
-export type UserCreateWithoutAuditLogsInput = {
+export type UserCreateWithoutCountryInput = {
   id?: string
   email: string
   password: string
@@ -1133,25 +1823,47 @@ export type UserCreateWithoutAuditLogsInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
   invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutAuditLogsInput = {
+export type UserUncheckedCreateWithoutCountryInput = {
   id?: string
   email: string
   password: string
@@ -1162,41 +1874,191 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
   invitedById?: string | null
+  organisationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutAuditLogsInput = {
+export type UserCreateOrConnectWithoutCountryInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCountryInput, Prisma.UserUncheckedCreateWithoutCountryInput>
 }
 
-export type UserUpsertWithoutAuditLogsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+export type UserCreateManyCountryInputEnvelope = {
+  data: Prisma.UserCreateManyCountryInput | Prisma.UserCreateManyCountryInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserUpsertWithWhereUniqueWithoutCountryInput = {
+  where: Prisma.UserWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCountryInput, Prisma.UserUncheckedUpdateWithoutCountryInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCountryInput, Prisma.UserUncheckedCreateWithoutCountryInput>
+}
+
+export type UserUpdateWithWhereUniqueWithoutCountryInput = {
+  where: Prisma.UserWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCountryInput, Prisma.UserUncheckedUpdateWithoutCountryInput>
+}
+
+export type UserUpdateManyWithWhereWithoutCountryInput = {
+  where: Prisma.UserScalarWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutCountryInput>
+}
+
+export type UserCreateWithoutManagedCountriesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutManagedCountriesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutManagedCountriesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutManagedCountriesInput, Prisma.UserUncheckedCreateWithoutManagedCountriesInput>
+}
+
+export type UserUpsertWithoutManagedCountriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutManagedCountriesInput, Prisma.UserUncheckedUpdateWithoutManagedCountriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutManagedCountriesInput, Prisma.UserUncheckedCreateWithoutManagedCountriesInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutAuditLogsInput = {
+export type UserUpdateToOneWithWhereWithoutManagedCountriesInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutManagedCountriesInput, Prisma.UserUncheckedUpdateWithoutManagedCountriesInput>
 }
 
-export type UserUpdateWithoutAuditLogsInput = {
+export type UserUpdateWithoutManagedCountriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1207,25 +2069,47 @@ export type UserUpdateWithoutAuditLogsInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
   invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutAuditLogsInput = {
+export type UserUncheckedUpdateWithoutManagedCountriesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1236,21 +2120,5011 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutMemberProfileInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMemberProfileInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMemberProfileInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMemberProfileInput, Prisma.UserUncheckedCreateWithoutMemberProfileInput>
+}
+
+export type UserUpsertWithoutMemberProfileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMemberProfileInput, Prisma.UserUncheckedUpdateWithoutMemberProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMemberProfileInput, Prisma.UserUncheckedCreateWithoutMemberProfileInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMemberProfileInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMemberProfileInput, Prisma.UserUncheckedUpdateWithoutMemberProfileInput>
+}
+
+export type UserUpdateWithoutMemberProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMemberProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutOrganisationInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOrganisationInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOrganisationInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrganisationInput, Prisma.UserUncheckedCreateWithoutOrganisationInput>
+}
+
+export type UserCreateManyOrganisationInputEnvelope = {
+  data: Prisma.UserCreateManyOrganisationInput | Prisma.UserCreateManyOrganisationInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserUpsertWithWhereUniqueWithoutOrganisationInput = {
+  where: Prisma.UserWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOrganisationInput, Prisma.UserUncheckedUpdateWithoutOrganisationInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrganisationInput, Prisma.UserUncheckedCreateWithoutOrganisationInput>
+}
+
+export type UserUpdateWithWhereUniqueWithoutOrganisationInput = {
+  where: Prisma.UserWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOrganisationInput, Prisma.UserUncheckedUpdateWithoutOrganisationInput>
+}
+
+export type UserUpdateManyWithWhereWithoutOrganisationInput = {
+  where: Prisma.UserScalarWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutOrganisationInput>
+}
+
+export type UserCreateWithoutOrganisationSeatsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOrganisationSeatsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOrganisationSeatsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrganisationSeatsInput, Prisma.UserUncheckedCreateWithoutOrganisationSeatsInput>
+}
+
+export type UserUpsertWithoutOrganisationSeatsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOrganisationSeatsInput, Prisma.UserUncheckedUpdateWithoutOrganisationSeatsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOrganisationSeatsInput, Prisma.UserUncheckedCreateWithoutOrganisationSeatsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOrganisationSeatsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOrganisationSeatsInput, Prisma.UserUncheckedUpdateWithoutOrganisationSeatsInput>
+}
+
+export type UserUpdateWithoutOrganisationSeatsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOrganisationSeatsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutMentorProfileInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMentorProfileInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMentorProfileInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMentorProfileInput, Prisma.UserUncheckedCreateWithoutMentorProfileInput>
+}
+
+export type UserUpsertWithoutMentorProfileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMentorProfileInput, Prisma.UserUncheckedUpdateWithoutMentorProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMentorProfileInput, Prisma.UserUncheckedCreateWithoutMentorProfileInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMentorProfileInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMentorProfileInput, Prisma.UserUncheckedUpdateWithoutMentorProfileInput>
+}
+
+export type UserUpdateWithoutMentorProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMentorProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutMentorMatchesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMentorMatchesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMentorMatchesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMentorMatchesInput, Prisma.UserUncheckedCreateWithoutMentorMatchesInput>
+}
+
+export type UserCreateWithoutMenteeMatchesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMenteeMatchesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMenteeMatchesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMenteeMatchesInput, Prisma.UserUncheckedCreateWithoutMenteeMatchesInput>
+}
+
+export type UserUpsertWithoutMentorMatchesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMentorMatchesInput, Prisma.UserUncheckedUpdateWithoutMentorMatchesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMentorMatchesInput, Prisma.UserUncheckedCreateWithoutMentorMatchesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMentorMatchesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMentorMatchesInput, Prisma.UserUncheckedUpdateWithoutMentorMatchesInput>
+}
+
+export type UserUpdateWithoutMentorMatchesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMentorMatchesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutMenteeMatchesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMenteeMatchesInput, Prisma.UserUncheckedUpdateWithoutMenteeMatchesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMenteeMatchesInput, Prisma.UserUncheckedCreateWithoutMenteeMatchesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMenteeMatchesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMenteeMatchesInput, Prisma.UserUncheckedUpdateWithoutMenteeMatchesInput>
+}
+
+export type UserUpdateWithoutMenteeMatchesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMenteeMatchesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSessionsAsMentorInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSessionsAsMentorInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSessionsAsMentorInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSessionsAsMentorInput, Prisma.UserUncheckedCreateWithoutSessionsAsMentorInput>
+}
+
+export type UserCreateWithoutSessionsAsMenteeInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSessionsAsMenteeInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSessionsAsMenteeInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSessionsAsMenteeInput, Prisma.UserUncheckedCreateWithoutSessionsAsMenteeInput>
+}
+
+export type UserUpsertWithoutSessionsAsMentorInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSessionsAsMentorInput, Prisma.UserUncheckedUpdateWithoutSessionsAsMentorInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSessionsAsMentorInput, Prisma.UserUncheckedCreateWithoutSessionsAsMentorInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSessionsAsMentorInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSessionsAsMentorInput, Prisma.UserUncheckedUpdateWithoutSessionsAsMentorInput>
+}
+
+export type UserUpdateWithoutSessionsAsMentorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSessionsAsMentorInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutSessionsAsMenteeInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSessionsAsMenteeInput, Prisma.UserUncheckedUpdateWithoutSessionsAsMenteeInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSessionsAsMenteeInput, Prisma.UserUncheckedCreateWithoutSessionsAsMenteeInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSessionsAsMenteeInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSessionsAsMenteeInput, Prisma.UserUncheckedUpdateWithoutSessionsAsMenteeInput>
+}
+
+export type UserUpdateWithoutSessionsAsMenteeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSessionsAsMenteeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCreatedCohortsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCreatedCohortsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCreatedCohortsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedCohortsInput, Prisma.UserUncheckedCreateWithoutCreatedCohortsInput>
+}
+
+export type UserUpsertWithoutCreatedCohortsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedCohortsInput, Prisma.UserUncheckedUpdateWithoutCreatedCohortsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedCohortsInput, Prisma.UserUncheckedCreateWithoutCreatedCohortsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedCohortsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedCohortsInput, Prisma.UserUncheckedUpdateWithoutCreatedCohortsInput>
+}
+
+export type UserUpdateWithoutCreatedCohortsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedCohortsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCohortParticipationsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCohortParticipationsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCohortParticipationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCohortParticipationsInput, Prisma.UserUncheckedCreateWithoutCohortParticipationsInput>
+}
+
+export type UserUpsertWithoutCohortParticipationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCohortParticipationsInput, Prisma.UserUncheckedUpdateWithoutCohortParticipationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCohortParticipationsInput, Prisma.UserUncheckedCreateWithoutCohortParticipationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCohortParticipationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCohortParticipationsInput, Prisma.UserUncheckedUpdateWithoutCohortParticipationsInput>
+}
+
+export type UserUpdateWithoutCohortParticipationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCohortParticipationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCreatedCoursesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCreatedCoursesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCreatedCoursesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedCoursesInput, Prisma.UserUncheckedCreateWithoutCreatedCoursesInput>
+}
+
+export type UserCreateWithoutReviewedCoursesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutReviewedCoursesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutReviewedCoursesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedCoursesInput, Prisma.UserUncheckedCreateWithoutReviewedCoursesInput>
+}
+
+export type UserUpsertWithoutCreatedCoursesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedCoursesInput, Prisma.UserUncheckedUpdateWithoutCreatedCoursesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedCoursesInput, Prisma.UserUncheckedCreateWithoutCreatedCoursesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedCoursesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedCoursesInput, Prisma.UserUncheckedUpdateWithoutCreatedCoursesInput>
+}
+
+export type UserUpdateWithoutCreatedCoursesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedCoursesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutReviewedCoursesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewedCoursesInput, Prisma.UserUncheckedUpdateWithoutReviewedCoursesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewedCoursesInput, Prisma.UserUncheckedCreateWithoutReviewedCoursesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewedCoursesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewedCoursesInput, Prisma.UserUncheckedUpdateWithoutReviewedCoursesInput>
+}
+
+export type UserUpdateWithoutReviewedCoursesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewedCoursesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCohortMentorshipsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCohortMentorshipsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCohortMentorshipsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCohortMentorshipsInput, Prisma.UserUncheckedCreateWithoutCohortMentorshipsInput>
+}
+
+export type UserUpsertWithoutCohortMentorshipsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCohortMentorshipsInput, Prisma.UserUncheckedUpdateWithoutCohortMentorshipsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCohortMentorshipsInput, Prisma.UserUncheckedCreateWithoutCohortMentorshipsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCohortMentorshipsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCohortMentorshipsInput, Prisma.UserUncheckedUpdateWithoutCohortMentorshipsInput>
+}
+
+export type UserUpdateWithoutCohortMentorshipsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCohortMentorshipsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutMilestoneSubmissionsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMilestoneSubmissionsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMilestoneSubmissionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMilestoneSubmissionsInput, Prisma.UserUncheckedCreateWithoutMilestoneSubmissionsInput>
+}
+
+export type UserCreateWithoutMilestoneReviewsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutMilestoneReviewsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutMilestoneReviewsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMilestoneReviewsInput, Prisma.UserUncheckedCreateWithoutMilestoneReviewsInput>
+}
+
+export type UserUpsertWithoutMilestoneSubmissionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMilestoneSubmissionsInput, Prisma.UserUncheckedUpdateWithoutMilestoneSubmissionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMilestoneSubmissionsInput, Prisma.UserUncheckedCreateWithoutMilestoneSubmissionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMilestoneSubmissionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMilestoneSubmissionsInput, Prisma.UserUncheckedUpdateWithoutMilestoneSubmissionsInput>
+}
+
+export type UserUpdateWithoutMilestoneSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMilestoneSubmissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUpsertWithoutMilestoneReviewsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMilestoneReviewsInput, Prisma.UserUncheckedUpdateWithoutMilestoneReviewsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMilestoneReviewsInput, Prisma.UserUncheckedCreateWithoutMilestoneReviewsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMilestoneReviewsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMilestoneReviewsInput, Prisma.UserUncheckedUpdateWithoutMilestoneReviewsInput>
+}
+
+export type UserUpdateWithoutMilestoneReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMilestoneReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutContentEnrollmentsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutContentEnrollmentsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutContentEnrollmentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutContentEnrollmentsInput, Prisma.UserUncheckedCreateWithoutContentEnrollmentsInput>
+}
+
+export type UserUpsertWithoutContentEnrollmentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutContentEnrollmentsInput, Prisma.UserUncheckedUpdateWithoutContentEnrollmentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutContentEnrollmentsInput, Prisma.UserUncheckedCreateWithoutContentEnrollmentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutContentEnrollmentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutContentEnrollmentsInput, Prisma.UserUncheckedUpdateWithoutContentEnrollmentsInput>
+}
+
+export type UserUpdateWithoutContentEnrollmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutContentEnrollmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutEventRegistrationsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutEventRegistrationsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutEventRegistrationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutEventRegistrationsInput, Prisma.UserUncheckedCreateWithoutEventRegistrationsInput>
+}
+
+export type UserUpsertWithoutEventRegistrationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutEventRegistrationsInput, Prisma.UserUncheckedUpdateWithoutEventRegistrationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutEventRegistrationsInput, Prisma.UserUncheckedCreateWithoutEventRegistrationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutEventRegistrationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutEventRegistrationsInput, Prisma.UserUncheckedUpdateWithoutEventRegistrationsInput>
+}
+
+export type UserUpdateWithoutEventRegistrationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutEventRegistrationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutOpportunityBookmarksInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOpportunityBookmarksInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOpportunityBookmarksInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOpportunityBookmarksInput, Prisma.UserUncheckedCreateWithoutOpportunityBookmarksInput>
+}
+
+export type UserUpsertWithoutOpportunityBookmarksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOpportunityBookmarksInput, Prisma.UserUncheckedUpdateWithoutOpportunityBookmarksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOpportunityBookmarksInput, Prisma.UserUncheckedCreateWithoutOpportunityBookmarksInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutOpportunityBookmarksInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOpportunityBookmarksInput, Prisma.UserUncheckedUpdateWithoutOpportunityBookmarksInput>
+}
+
+export type UserUpdateWithoutOpportunityBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOpportunityBookmarksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCommunityMembershipsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCommunityMembershipsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCommunityMembershipsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCommunityMembershipsInput, Prisma.UserUncheckedCreateWithoutCommunityMembershipsInput>
+}
+
+export type UserUpsertWithoutCommunityMembershipsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCommunityMembershipsInput, Prisma.UserUncheckedUpdateWithoutCommunityMembershipsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCommunityMembershipsInput, Prisma.UserUncheckedCreateWithoutCommunityMembershipsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCommunityMembershipsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCommunityMembershipsInput, Prisma.UserUncheckedUpdateWithoutCommunityMembershipsInput>
+}
+
+export type UserUpdateWithoutCommunityMembershipsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCommunityMembershipsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPostsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPostsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPostsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
+}
+
+export type UserUpsertWithoutPostsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPostsInput, Prisma.UserUncheckedUpdateWithoutPostsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPostsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPostsInput, Prisma.UserUncheckedUpdateWithoutPostsInput>
+}
+
+export type UserUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPostsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPhysicalBookingsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPhysicalBookingsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPhysicalBookingsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPhysicalBookingsInput, Prisma.UserUncheckedCreateWithoutPhysicalBookingsInput>
+}
+
+export type UserUpsertWithoutPhysicalBookingsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPhysicalBookingsInput, Prisma.UserUncheckedUpdateWithoutPhysicalBookingsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPhysicalBookingsInput, Prisma.UserUncheckedCreateWithoutPhysicalBookingsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPhysicalBookingsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPhysicalBookingsInput, Prisma.UserUncheckedUpdateWithoutPhysicalBookingsInput>
+}
+
+export type UserUpdateWithoutPhysicalBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPhysicalBookingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSubscriptionsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSubscriptionsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSubscriptionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+}
+
+export type UserUpsertWithoutSubscriptionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSubscriptionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
+}
+
+export type UserUpdateWithoutSubscriptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSubscriptionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutWaitlistEntriesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutWaitlistEntriesInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutWaitlistEntriesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutWaitlistEntriesInput, Prisma.UserUncheckedCreateWithoutWaitlistEntriesInput>
+}
+
+export type UserUpsertWithoutWaitlistEntriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutWaitlistEntriesInput, Prisma.UserUncheckedUpdateWithoutWaitlistEntriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutWaitlistEntriesInput, Prisma.UserUncheckedCreateWithoutWaitlistEntriesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutWaitlistEntriesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutWaitlistEntriesInput, Prisma.UserUncheckedUpdateWithoutWaitlistEntriesInput>
+}
+
+export type UserUpdateWithoutWaitlistEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutWaitlistEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -1265,21 +7139,43 @@ export type UserCreateWithoutNotificationsInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
   invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
 }
 
@@ -1294,21 +7190,43 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
   invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -1339,21 +7257,43 @@ export type UserUpdateWithoutNotificationsInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
   invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
 }
 
@@ -1368,22 +7308,264 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAuditLogsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitedBy?: Prisma.UserCreateNestedOneWithoutInviteesInput
+  invitees?: Prisma.UserCreateNestedManyWithoutInvitedByInput
+  country?: Prisma.CountryCreateNestedOneWithoutMembersInput
+  organisation?: Prisma.OrganisationCreateNestedOneWithoutMembersInput
+  memberProfile?: Prisma.MemberProfileCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionCreateNestedManyWithoutMenteeInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAuditLogsInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  invitees?: Prisma.UserUncheckedCreateNestedManyWithoutInvitedByInput
+  memberProfile?: Prisma.MemberProfileUncheckedCreateNestedOneWithoutUserInput
+  mentorProfile?: Prisma.MentorProfileUncheckedCreateNestedOneWithoutUserInput
+  managedCountries?: Prisma.CountryManagerUncheckedCreateNestedManyWithoutUserInput
+  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedManyWithoutUserInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedCreateNestedManyWithoutUserInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedCreateNestedManyWithoutUserInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedCreateNestedManyWithoutUserInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedCreateNestedManyWithoutUserInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedCreateNestedManyWithoutUserInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedCreateNestedManyWithoutUserInput
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutAuthorInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedCreateNestedManyWithoutUserInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedCreateNestedManyWithoutUserInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedCreateNestedManyWithoutCreatedByInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedCreateNestedManyWithoutUserInput
+  createdCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutCreatedByInput
+  reviewedCourses?: Prisma.CourseUncheckedCreateNestedManyWithoutReviewedByInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutUserInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutReviewedByInput
+  mentorMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMentorInput
+  menteeMatches?: Prisma.MentorMatchUncheckedCreateNestedManyWithoutMenteeInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMentorInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedCreateNestedManyWithoutMenteeInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAuditLogsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+}
+
+export type UserUpsertWithoutAuditLogsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAuditLogsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAuditLogsInput, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
+}
+
+export type UserUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAuditLogsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInvitedByInput = {
@@ -1397,17 +7579,16 @@ export type UserCreateManyInvitedByInput = {
   displayName?: string | null
   avatarUrl?: string | null
   phone?: string | null
+  bio?: string | null
   verificationCode?: string | null
   verificationExpires?: Date | string | null
   passwordResetToken?: string | null
   passwordResetExpires?: Date | string | null
   lastActiveAt?: Date | string | null
-  city?: string | null
-  country?: string | null
-  language?: string | null
-  dateOfBirth?: Date | string | null
   googleId?: string | null
   googleRefreshToken?: string | null
+  countryId?: string | null
+  organisationId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1423,20 +7604,42 @@ export type UserUpdateWithoutInvitedByInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
@@ -1452,20 +7655,42 @@ export type UserUncheckedUpdateWithoutInvitedByInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -1481,17 +7706,320 @@ export type UserUncheckedUpdateManyWithoutInvitedByInput = {
   displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  language?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserCreateManyCountryInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  organisationId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserUpdateWithoutCountryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  organisation?: Prisma.OrganisationUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCountryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateManyWithoutCountryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  organisationId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type UserCreateManyOrganisationInput = {
+  id?: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  accountStatus?: $Enums.AccountStatus
+  firstName?: string | null
+  lastName?: string | null
+  displayName?: string | null
+  avatarUrl?: string | null
+  phone?: string | null
+  bio?: string | null
+  verificationCode?: string | null
+  verificationExpires?: Date | string | null
+  passwordResetToken?: string | null
+  passwordResetExpires?: Date | string | null
+  lastActiveAt?: Date | string | null
+  googleId?: string | null
+  googleRefreshToken?: string | null
+  invitedById?: string | null
+  countryId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserUpdateWithoutOrganisationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitedBy?: Prisma.UserUpdateOneWithoutInviteesNestedInput
+  invitees?: Prisma.UserUpdateManyWithoutInvitedByNestedInput
+  country?: Prisma.CountryUpdateOneWithoutMembersNestedInput
+  memberProfile?: Prisma.MemberProfileUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutOrganisationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  invitees?: Prisma.UserUncheckedUpdateManyWithoutInvitedByNestedInput
+  memberProfile?: Prisma.MemberProfileUncheckedUpdateOneWithoutUserNestedInput
+  mentorProfile?: Prisma.MentorProfileUncheckedUpdateOneWithoutUserNestedInput
+  managedCountries?: Prisma.CountryManagerUncheckedUpdateManyWithoutUserNestedInput
+  subscriptions?: Prisma.SubscriptionUncheckedUpdateManyWithoutUserNestedInput
+  contentEnrollments?: Prisma.ContentEnrollmentUncheckedUpdateManyWithoutUserNestedInput
+  eventRegistrations?: Prisma.EventRegistrationUncheckedUpdateManyWithoutUserNestedInput
+  opportunityBookmarks?: Prisma.OpportunityBookmarkUncheckedUpdateManyWithoutUserNestedInput
+  physicalBookings?: Prisma.PhysicalAccessBookingUncheckedUpdateManyWithoutUserNestedInput
+  waitlistEntries?: Prisma.WaitlistEntryUncheckedUpdateManyWithoutUserNestedInput
+  communityMemberships?: Prisma.CommunityGroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  posts?: Prisma.PostUncheckedUpdateManyWithoutAuthorNestedInput
+  organisationSeats?: Prisma.OrganisationSeatUncheckedUpdateManyWithoutUserNestedInput
+  cohortParticipations?: Prisma.CohortParticipantUncheckedUpdateManyWithoutUserNestedInput
+  createdCohorts?: Prisma.ProgrammeCohortUncheckedUpdateManyWithoutCreatedByNestedInput
+  cohortMentorships?: Prisma.CohortMentorUncheckedUpdateManyWithoutUserNestedInput
+  createdCourses?: Prisma.CourseUncheckedUpdateManyWithoutCreatedByNestedInput
+  reviewedCourses?: Prisma.CourseUncheckedUpdateManyWithoutReviewedByNestedInput
+  milestoneSubmissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  milestoneReviews?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutReviewedByNestedInput
+  mentorMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMentorNestedInput
+  menteeMatches?: Prisma.MentorMatchUncheckedUpdateManyWithoutMenteeNestedInput
+  sessionsAsMentor?: Prisma.MentorSessionUncheckedUpdateManyWithoutMentorNestedInput
+  sessionsAsMentee?: Prisma.MentorSessionUncheckedUpdateManyWithoutMenteeNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateManyWithoutOrganisationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  accountStatus?: Prisma.EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  displayName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verificationExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  passwordResetToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordResetExpires?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastActiveAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  googleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  googleRefreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invitedById?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  countryId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1503,12 +8031,54 @@ export type UserUncheckedUpdateManyWithoutInvitedByInput = {
 
 export type UserCountOutputType = {
   invitees: number
+  managedCountries: number
+  subscriptions: number
+  contentEnrollments: number
+  eventRegistrations: number
+  opportunityBookmarks: number
+  physicalBookings: number
+  waitlistEntries: number
+  communityMemberships: number
+  posts: number
+  organisationSeats: number
+  cohortParticipations: number
+  createdCohorts: number
+  cohortMentorships: number
+  createdCourses: number
+  reviewedCourses: number
+  milestoneSubmissions: number
+  milestoneReviews: number
+  mentorMatches: number
+  menteeMatches: number
+  sessionsAsMentor: number
+  sessionsAsMentee: number
   auditLogs: number
   notifications: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   invitees?: boolean | UserCountOutputTypeCountInviteesArgs
+  managedCountries?: boolean | UserCountOutputTypeCountManagedCountriesArgs
+  subscriptions?: boolean | UserCountOutputTypeCountSubscriptionsArgs
+  contentEnrollments?: boolean | UserCountOutputTypeCountContentEnrollmentsArgs
+  eventRegistrations?: boolean | UserCountOutputTypeCountEventRegistrationsArgs
+  opportunityBookmarks?: boolean | UserCountOutputTypeCountOpportunityBookmarksArgs
+  physicalBookings?: boolean | UserCountOutputTypeCountPhysicalBookingsArgs
+  waitlistEntries?: boolean | UserCountOutputTypeCountWaitlistEntriesArgs
+  communityMemberships?: boolean | UserCountOutputTypeCountCommunityMembershipsArgs
+  posts?: boolean | UserCountOutputTypeCountPostsArgs
+  organisationSeats?: boolean | UserCountOutputTypeCountOrganisationSeatsArgs
+  cohortParticipations?: boolean | UserCountOutputTypeCountCohortParticipationsArgs
+  createdCohorts?: boolean | UserCountOutputTypeCountCreatedCohortsArgs
+  cohortMentorships?: boolean | UserCountOutputTypeCountCohortMentorshipsArgs
+  createdCourses?: boolean | UserCountOutputTypeCountCreatedCoursesArgs
+  reviewedCourses?: boolean | UserCountOutputTypeCountReviewedCoursesArgs
+  milestoneSubmissions?: boolean | UserCountOutputTypeCountMilestoneSubmissionsArgs
+  milestoneReviews?: boolean | UserCountOutputTypeCountMilestoneReviewsArgs
+  mentorMatches?: boolean | UserCountOutputTypeCountMentorMatchesArgs
+  menteeMatches?: boolean | UserCountOutputTypeCountMenteeMatchesArgs
+  sessionsAsMentor?: boolean | UserCountOutputTypeCountSessionsAsMentorArgs
+  sessionsAsMentee?: boolean | UserCountOutputTypeCountSessionsAsMenteeArgs
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
 }
@@ -1528,6 +8098,153 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
  */
 export type UserCountOutputTypeCountInviteesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.UserWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountManagedCountriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CountryManagerWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountContentEnrollmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContentEnrollmentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountEventRegistrationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EventRegistrationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountOpportunityBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OpportunityBookmarkWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPhysicalBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PhysicalAccessBookingWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountWaitlistEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WaitlistEntryWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCommunityMembershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CommunityGroupMemberWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PostWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountOrganisationSeatsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OrganisationSeatWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCohortParticipationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CohortParticipantWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedCohortsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProgrammeCohortWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCohortMentorshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CohortMentorWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedCoursesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CourseWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewedCoursesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CourseWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMilestoneSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MilestoneSubmissionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMilestoneReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MilestoneSubmissionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMentorMatchesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MentorMatchWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMenteeMatchesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MentorMatchWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSessionsAsMentorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MentorSessionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSessionsAsMenteeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MentorSessionWhereInput
 }
 
 /**
@@ -1556,22 +8273,46 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   displayName?: boolean
   avatarUrl?: boolean
   phone?: boolean
+  bio?: boolean
   verificationCode?: boolean
   verificationExpires?: boolean
   passwordResetToken?: boolean
   passwordResetExpires?: boolean
   lastActiveAt?: boolean
-  city?: boolean
-  country?: boolean
-  language?: boolean
-  dateOfBirth?: boolean
   googleId?: boolean
   googleRefreshToken?: boolean
   invitedById?: boolean
+  countryId?: boolean
+  organisationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   invitedBy?: boolean | Prisma.User$invitedByArgs<ExtArgs>
   invitees?: boolean | Prisma.User$inviteesArgs<ExtArgs>
+  country?: boolean | Prisma.User$countryArgs<ExtArgs>
+  organisation?: boolean | Prisma.User$organisationArgs<ExtArgs>
+  memberProfile?: boolean | Prisma.User$memberProfileArgs<ExtArgs>
+  mentorProfile?: boolean | Prisma.User$mentorProfileArgs<ExtArgs>
+  managedCountries?: boolean | Prisma.User$managedCountriesArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
+  contentEnrollments?: boolean | Prisma.User$contentEnrollmentsArgs<ExtArgs>
+  eventRegistrations?: boolean | Prisma.User$eventRegistrationsArgs<ExtArgs>
+  opportunityBookmarks?: boolean | Prisma.User$opportunityBookmarksArgs<ExtArgs>
+  physicalBookings?: boolean | Prisma.User$physicalBookingsArgs<ExtArgs>
+  waitlistEntries?: boolean | Prisma.User$waitlistEntriesArgs<ExtArgs>
+  communityMemberships?: boolean | Prisma.User$communityMembershipsArgs<ExtArgs>
+  posts?: boolean | Prisma.User$postsArgs<ExtArgs>
+  organisationSeats?: boolean | Prisma.User$organisationSeatsArgs<ExtArgs>
+  cohortParticipations?: boolean | Prisma.User$cohortParticipationsArgs<ExtArgs>
+  createdCohorts?: boolean | Prisma.User$createdCohortsArgs<ExtArgs>
+  cohortMentorships?: boolean | Prisma.User$cohortMentorshipsArgs<ExtArgs>
+  createdCourses?: boolean | Prisma.User$createdCoursesArgs<ExtArgs>
+  reviewedCourses?: boolean | Prisma.User$reviewedCoursesArgs<ExtArgs>
+  milestoneSubmissions?: boolean | Prisma.User$milestoneSubmissionsArgs<ExtArgs>
+  milestoneReviews?: boolean | Prisma.User$milestoneReviewsArgs<ExtArgs>
+  mentorMatches?: boolean | Prisma.User$mentorMatchesArgs<ExtArgs>
+  menteeMatches?: boolean | Prisma.User$menteeMatchesArgs<ExtArgs>
+  sessionsAsMentor?: boolean | Prisma.User$sessionsAsMentorArgs<ExtArgs>
+  sessionsAsMentee?: boolean | Prisma.User$sessionsAsMenteeArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1588,21 +8329,22 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   displayName?: boolean
   avatarUrl?: boolean
   phone?: boolean
+  bio?: boolean
   verificationCode?: boolean
   verificationExpires?: boolean
   passwordResetToken?: boolean
   passwordResetExpires?: boolean
   lastActiveAt?: boolean
-  city?: boolean
-  country?: boolean
-  language?: boolean
-  dateOfBirth?: boolean
   googleId?: boolean
   googleRefreshToken?: boolean
   invitedById?: boolean
+  countryId?: boolean
+  organisationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   invitedBy?: boolean | Prisma.User$invitedByArgs<ExtArgs>
+  country?: boolean | Prisma.User$countryArgs<ExtArgs>
+  organisation?: boolean | Prisma.User$organisationArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1616,21 +8358,22 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   displayName?: boolean
   avatarUrl?: boolean
   phone?: boolean
+  bio?: boolean
   verificationCode?: boolean
   verificationExpires?: boolean
   passwordResetToken?: boolean
   passwordResetExpires?: boolean
   lastActiveAt?: boolean
-  city?: boolean
-  country?: boolean
-  language?: boolean
-  dateOfBirth?: boolean
   googleId?: boolean
   googleRefreshToken?: boolean
   invitedById?: boolean
+  countryId?: boolean
+  organisationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   invitedBy?: boolean | Prisma.User$invitedByArgs<ExtArgs>
+  country?: boolean | Prisma.User$countryArgs<ExtArgs>
+  organisation?: boolean | Prisma.User$organisationArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -1644,35 +8387,63 @@ export type UserSelectScalar = {
   displayName?: boolean
   avatarUrl?: boolean
   phone?: boolean
+  bio?: boolean
   verificationCode?: boolean
   verificationExpires?: boolean
   passwordResetToken?: boolean
   passwordResetExpires?: boolean
   lastActiveAt?: boolean
-  city?: boolean
-  country?: boolean
-  language?: boolean
-  dateOfBirth?: boolean
   googleId?: boolean
   googleRefreshToken?: boolean
   invitedById?: boolean
+  countryId?: boolean
+  organisationId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "role" | "accountStatus" | "firstName" | "lastName" | "displayName" | "avatarUrl" | "phone" | "verificationCode" | "verificationExpires" | "passwordResetToken" | "passwordResetExpires" | "lastActiveAt" | "city" | "country" | "language" | "dateOfBirth" | "googleId" | "googleRefreshToken" | "invitedById" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "role" | "accountStatus" | "firstName" | "lastName" | "displayName" | "avatarUrl" | "phone" | "bio" | "verificationCode" | "verificationExpires" | "passwordResetToken" | "passwordResetExpires" | "lastActiveAt" | "googleId" | "googleRefreshToken" | "invitedById" | "countryId" | "organisationId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   invitedBy?: boolean | Prisma.User$invitedByArgs<ExtArgs>
   invitees?: boolean | Prisma.User$inviteesArgs<ExtArgs>
+  country?: boolean | Prisma.User$countryArgs<ExtArgs>
+  organisation?: boolean | Prisma.User$organisationArgs<ExtArgs>
+  memberProfile?: boolean | Prisma.User$memberProfileArgs<ExtArgs>
+  mentorProfile?: boolean | Prisma.User$mentorProfileArgs<ExtArgs>
+  managedCountries?: boolean | Prisma.User$managedCountriesArgs<ExtArgs>
+  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
+  contentEnrollments?: boolean | Prisma.User$contentEnrollmentsArgs<ExtArgs>
+  eventRegistrations?: boolean | Prisma.User$eventRegistrationsArgs<ExtArgs>
+  opportunityBookmarks?: boolean | Prisma.User$opportunityBookmarksArgs<ExtArgs>
+  physicalBookings?: boolean | Prisma.User$physicalBookingsArgs<ExtArgs>
+  waitlistEntries?: boolean | Prisma.User$waitlistEntriesArgs<ExtArgs>
+  communityMemberships?: boolean | Prisma.User$communityMembershipsArgs<ExtArgs>
+  posts?: boolean | Prisma.User$postsArgs<ExtArgs>
+  organisationSeats?: boolean | Prisma.User$organisationSeatsArgs<ExtArgs>
+  cohortParticipations?: boolean | Prisma.User$cohortParticipationsArgs<ExtArgs>
+  createdCohorts?: boolean | Prisma.User$createdCohortsArgs<ExtArgs>
+  cohortMentorships?: boolean | Prisma.User$cohortMentorshipsArgs<ExtArgs>
+  createdCourses?: boolean | Prisma.User$createdCoursesArgs<ExtArgs>
+  reviewedCourses?: boolean | Prisma.User$reviewedCoursesArgs<ExtArgs>
+  milestoneSubmissions?: boolean | Prisma.User$milestoneSubmissionsArgs<ExtArgs>
+  milestoneReviews?: boolean | Prisma.User$milestoneReviewsArgs<ExtArgs>
+  mentorMatches?: boolean | Prisma.User$mentorMatchesArgs<ExtArgs>
+  menteeMatches?: boolean | Prisma.User$menteeMatchesArgs<ExtArgs>
+  sessionsAsMentor?: boolean | Prisma.User$sessionsAsMentorArgs<ExtArgs>
+  sessionsAsMentee?: boolean | Prisma.User$sessionsAsMenteeArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   invitedBy?: boolean | Prisma.User$invitedByArgs<ExtArgs>
+  country?: boolean | Prisma.User$countryArgs<ExtArgs>
+  organisation?: boolean | Prisma.User$organisationArgs<ExtArgs>
 }
 export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   invitedBy?: boolean | Prisma.User$invitedByArgs<ExtArgs>
+  country?: boolean | Prisma.User$countryArgs<ExtArgs>
+  organisation?: boolean | Prisma.User$organisationArgs<ExtArgs>
 }
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1680,6 +8451,31 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     invitedBy: Prisma.$UserPayload<ExtArgs> | null
     invitees: Prisma.$UserPayload<ExtArgs>[]
+    country: Prisma.$CountryPayload<ExtArgs> | null
+    organisation: Prisma.$OrganisationPayload<ExtArgs> | null
+    memberProfile: Prisma.$MemberProfilePayload<ExtArgs> | null
+    mentorProfile: Prisma.$MentorProfilePayload<ExtArgs> | null
+    managedCountries: Prisma.$CountryManagerPayload<ExtArgs>[]
+    subscriptions: Prisma.$SubscriptionPayload<ExtArgs>[]
+    contentEnrollments: Prisma.$ContentEnrollmentPayload<ExtArgs>[]
+    eventRegistrations: Prisma.$EventRegistrationPayload<ExtArgs>[]
+    opportunityBookmarks: Prisma.$OpportunityBookmarkPayload<ExtArgs>[]
+    physicalBookings: Prisma.$PhysicalAccessBookingPayload<ExtArgs>[]
+    waitlistEntries: Prisma.$WaitlistEntryPayload<ExtArgs>[]
+    communityMemberships: Prisma.$CommunityGroupMemberPayload<ExtArgs>[]
+    posts: Prisma.$PostPayload<ExtArgs>[]
+    organisationSeats: Prisma.$OrganisationSeatPayload<ExtArgs>[]
+    cohortParticipations: Prisma.$CohortParticipantPayload<ExtArgs>[]
+    createdCohorts: Prisma.$ProgrammeCohortPayload<ExtArgs>[]
+    cohortMentorships: Prisma.$CohortMentorPayload<ExtArgs>[]
+    createdCourses: Prisma.$CoursePayload<ExtArgs>[]
+    reviewedCourses: Prisma.$CoursePayload<ExtArgs>[]
+    milestoneSubmissions: Prisma.$MilestoneSubmissionPayload<ExtArgs>[]
+    milestoneReviews: Prisma.$MilestoneSubmissionPayload<ExtArgs>[]
+    mentorMatches: Prisma.$MentorMatchPayload<ExtArgs>[]
+    menteeMatches: Prisma.$MentorMatchPayload<ExtArgs>[]
+    sessionsAsMentor: Prisma.$MentorSessionPayload<ExtArgs>[]
+    sessionsAsMentee: Prisma.$MentorSessionPayload<ExtArgs>[]
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
   }
@@ -1694,18 +8490,17 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     displayName: string | null
     avatarUrl: string | null
     phone: string | null
+    bio: string | null
     verificationCode: string | null
     verificationExpires: Date | null
     passwordResetToken: string | null
     passwordResetExpires: Date | null
     lastActiveAt: Date | null
-    city: string | null
-    country: string | null
-    language: string | null
-    dateOfBirth: Date | null
     googleId: string | null
     googleRefreshToken: string | null
     invitedById: string | null
+    countryId: string | null
+    organisationId: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -2104,6 +8899,31 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   invitedBy<T extends Prisma.User$invitedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$invitedByArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   invitees<T extends Prisma.User$inviteesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$inviteesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  country<T extends Prisma.User$countryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$countryArgs<ExtArgs>>): Prisma.Prisma__CountryClient<runtime.Types.Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  organisation<T extends Prisma.User$organisationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$organisationArgs<ExtArgs>>): Prisma.Prisma__OrganisationClient<runtime.Types.Result.GetResult<Prisma.$OrganisationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  memberProfile<T extends Prisma.User$memberProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$memberProfileArgs<ExtArgs>>): Prisma.Prisma__MemberProfileClient<runtime.Types.Result.GetResult<Prisma.$MemberProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  mentorProfile<T extends Prisma.User$mentorProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mentorProfileArgs<ExtArgs>>): Prisma.Prisma__MentorProfileClient<runtime.Types.Result.GetResult<Prisma.$MentorProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  managedCountries<T extends Prisma.User$managedCountriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$managedCountriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CountryManagerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptions<T extends Prisma.User$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$subscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  contentEnrollments<T extends Prisma.User$contentEnrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$contentEnrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContentEnrollmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  eventRegistrations<T extends Prisma.User$eventRegistrationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$eventRegistrationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EventRegistrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  opportunityBookmarks<T extends Prisma.User$opportunityBookmarksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$opportunityBookmarksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OpportunityBookmarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  physicalBookings<T extends Prisma.User$physicalBookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$physicalBookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PhysicalAccessBookingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  waitlistEntries<T extends Prisma.User$waitlistEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$waitlistEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WaitlistEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  communityMemberships<T extends Prisma.User$communityMembershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$communityMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommunityGroupMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  posts<T extends Prisma.User$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  organisationSeats<T extends Prisma.User$organisationSeatsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$organisationSeatsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrganisationSeatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cohortParticipations<T extends Prisma.User$cohortParticipationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cohortParticipationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CohortParticipantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdCohorts<T extends Prisma.User$createdCohortsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdCohortsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProgrammeCohortPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  cohortMentorships<T extends Prisma.User$cohortMentorshipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cohortMentorshipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CohortMentorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdCourses<T extends Prisma.User$createdCoursesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdCoursesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviewedCourses<T extends Prisma.User$reviewedCoursesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewedCoursesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  milestoneSubmissions<T extends Prisma.User$milestoneSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$milestoneSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MilestoneSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  milestoneReviews<T extends Prisma.User$milestoneReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$milestoneReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MilestoneSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  mentorMatches<T extends Prisma.User$mentorMatchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$mentorMatchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorMatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  menteeMatches<T extends Prisma.User$menteeMatchesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$menteeMatchesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorMatchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessionsAsMentor<T extends Prisma.User$sessionsAsMentorArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsAsMentorArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sessionsAsMentee<T extends Prisma.User$sessionsAsMenteeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsAsMenteeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MentorSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2145,18 +8965,17 @@ export interface UserFieldRefs {
   readonly displayName: Prisma.FieldRef<"User", 'String'>
   readonly avatarUrl: Prisma.FieldRef<"User", 'String'>
   readonly phone: Prisma.FieldRef<"User", 'String'>
+  readonly bio: Prisma.FieldRef<"User", 'String'>
   readonly verificationCode: Prisma.FieldRef<"User", 'String'>
   readonly verificationExpires: Prisma.FieldRef<"User", 'DateTime'>
   readonly passwordResetToken: Prisma.FieldRef<"User", 'String'>
   readonly passwordResetExpires: Prisma.FieldRef<"User", 'DateTime'>
   readonly lastActiveAt: Prisma.FieldRef<"User", 'DateTime'>
-  readonly city: Prisma.FieldRef<"User", 'String'>
-  readonly country: Prisma.FieldRef<"User", 'String'>
-  readonly language: Prisma.FieldRef<"User", 'String'>
-  readonly dateOfBirth: Prisma.FieldRef<"User", 'DateTime'>
   readonly googleId: Prisma.FieldRef<"User", 'String'>
   readonly googleRefreshToken: Prisma.FieldRef<"User", 'String'>
   readonly invitedById: Prisma.FieldRef<"User", 'String'>
+  readonly countryId: Prisma.FieldRef<"User", 'String'>
+  readonly organisationId: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -2600,6 +9419,586 @@ export type User$inviteesArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
+}
+
+/**
+ * User.country
+ */
+export type User$countryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Country
+   */
+  select?: Prisma.CountrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Country
+   */
+  omit?: Prisma.CountryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CountryInclude<ExtArgs> | null
+  where?: Prisma.CountryWhereInput
+}
+
+/**
+ * User.organisation
+ */
+export type User$organisationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Organisation
+   */
+  select?: Prisma.OrganisationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Organisation
+   */
+  omit?: Prisma.OrganisationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrganisationInclude<ExtArgs> | null
+  where?: Prisma.OrganisationWhereInput
+}
+
+/**
+ * User.memberProfile
+ */
+export type User$memberProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MemberProfile
+   */
+  select?: Prisma.MemberProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MemberProfile
+   */
+  omit?: Prisma.MemberProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberProfileInclude<ExtArgs> | null
+  where?: Prisma.MemberProfileWhereInput
+}
+
+/**
+ * User.mentorProfile
+ */
+export type User$mentorProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MentorProfile
+   */
+  select?: Prisma.MentorProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MentorProfile
+   */
+  omit?: Prisma.MentorProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MentorProfileInclude<ExtArgs> | null
+  where?: Prisma.MentorProfileWhereInput
+}
+
+/**
+ * User.managedCountries
+ */
+export type User$managedCountriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CountryManager
+   */
+  select?: Prisma.CountryManagerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CountryManager
+   */
+  omit?: Prisma.CountryManagerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CountryManagerInclude<ExtArgs> | null
+  where?: Prisma.CountryManagerWhereInput
+  orderBy?: Prisma.CountryManagerOrderByWithRelationInput | Prisma.CountryManagerOrderByWithRelationInput[]
+  cursor?: Prisma.CountryManagerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CountryManagerScalarFieldEnum | Prisma.CountryManagerScalarFieldEnum[]
+}
+
+/**
+ * User.subscriptions
+ */
+export type User$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Subscription
+   */
+  select?: Prisma.SubscriptionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Subscription
+   */
+  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriptionInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionWhereInput
+  orderBy?: Prisma.SubscriptionOrderByWithRelationInput | Prisma.SubscriptionOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriptionScalarFieldEnum | Prisma.SubscriptionScalarFieldEnum[]
+}
+
+/**
+ * User.contentEnrollments
+ */
+export type User$contentEnrollmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContentEnrollment
+   */
+  select?: Prisma.ContentEnrollmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContentEnrollment
+   */
+  omit?: Prisma.ContentEnrollmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContentEnrollmentInclude<ExtArgs> | null
+  where?: Prisma.ContentEnrollmentWhereInput
+  orderBy?: Prisma.ContentEnrollmentOrderByWithRelationInput | Prisma.ContentEnrollmentOrderByWithRelationInput[]
+  cursor?: Prisma.ContentEnrollmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContentEnrollmentScalarFieldEnum | Prisma.ContentEnrollmentScalarFieldEnum[]
+}
+
+/**
+ * User.eventRegistrations
+ */
+export type User$eventRegistrationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EventRegistration
+   */
+  select?: Prisma.EventRegistrationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EventRegistration
+   */
+  omit?: Prisma.EventRegistrationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EventRegistrationInclude<ExtArgs> | null
+  where?: Prisma.EventRegistrationWhereInput
+  orderBy?: Prisma.EventRegistrationOrderByWithRelationInput | Prisma.EventRegistrationOrderByWithRelationInput[]
+  cursor?: Prisma.EventRegistrationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EventRegistrationScalarFieldEnum | Prisma.EventRegistrationScalarFieldEnum[]
+}
+
+/**
+ * User.opportunityBookmarks
+ */
+export type User$opportunityBookmarksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OpportunityBookmark
+   */
+  select?: Prisma.OpportunityBookmarkSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OpportunityBookmark
+   */
+  omit?: Prisma.OpportunityBookmarkOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OpportunityBookmarkInclude<ExtArgs> | null
+  where?: Prisma.OpportunityBookmarkWhereInput
+  orderBy?: Prisma.OpportunityBookmarkOrderByWithRelationInput | Prisma.OpportunityBookmarkOrderByWithRelationInput[]
+  cursor?: Prisma.OpportunityBookmarkWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OpportunityBookmarkScalarFieldEnum | Prisma.OpportunityBookmarkScalarFieldEnum[]
+}
+
+/**
+ * User.physicalBookings
+ */
+export type User$physicalBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PhysicalAccessBooking
+   */
+  select?: Prisma.PhysicalAccessBookingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PhysicalAccessBooking
+   */
+  omit?: Prisma.PhysicalAccessBookingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PhysicalAccessBookingInclude<ExtArgs> | null
+  where?: Prisma.PhysicalAccessBookingWhereInput
+  orderBy?: Prisma.PhysicalAccessBookingOrderByWithRelationInput | Prisma.PhysicalAccessBookingOrderByWithRelationInput[]
+  cursor?: Prisma.PhysicalAccessBookingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PhysicalAccessBookingScalarFieldEnum | Prisma.PhysicalAccessBookingScalarFieldEnum[]
+}
+
+/**
+ * User.waitlistEntries
+ */
+export type User$waitlistEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WaitlistEntry
+   */
+  select?: Prisma.WaitlistEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WaitlistEntry
+   */
+  omit?: Prisma.WaitlistEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WaitlistEntryInclude<ExtArgs> | null
+  where?: Prisma.WaitlistEntryWhereInput
+  orderBy?: Prisma.WaitlistEntryOrderByWithRelationInput | Prisma.WaitlistEntryOrderByWithRelationInput[]
+  cursor?: Prisma.WaitlistEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WaitlistEntryScalarFieldEnum | Prisma.WaitlistEntryScalarFieldEnum[]
+}
+
+/**
+ * User.communityMemberships
+ */
+export type User$communityMembershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CommunityGroupMember
+   */
+  select?: Prisma.CommunityGroupMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CommunityGroupMember
+   */
+  omit?: Prisma.CommunityGroupMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommunityGroupMemberInclude<ExtArgs> | null
+  where?: Prisma.CommunityGroupMemberWhereInput
+  orderBy?: Prisma.CommunityGroupMemberOrderByWithRelationInput | Prisma.CommunityGroupMemberOrderByWithRelationInput[]
+  cursor?: Prisma.CommunityGroupMemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CommunityGroupMemberScalarFieldEnum | Prisma.CommunityGroupMemberScalarFieldEnum[]
+}
+
+/**
+ * User.posts
+ */
+export type User$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Post
+   */
+  select?: Prisma.PostSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Post
+   */
+  omit?: Prisma.PostOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PostInclude<ExtArgs> | null
+  where?: Prisma.PostWhereInput
+  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
+  cursor?: Prisma.PostWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
+}
+
+/**
+ * User.organisationSeats
+ */
+export type User$organisationSeatsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OrganisationSeat
+   */
+  select?: Prisma.OrganisationSeatSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OrganisationSeat
+   */
+  omit?: Prisma.OrganisationSeatOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrganisationSeatInclude<ExtArgs> | null
+  where?: Prisma.OrganisationSeatWhereInput
+  orderBy?: Prisma.OrganisationSeatOrderByWithRelationInput | Prisma.OrganisationSeatOrderByWithRelationInput[]
+  cursor?: Prisma.OrganisationSeatWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OrganisationSeatScalarFieldEnum | Prisma.OrganisationSeatScalarFieldEnum[]
+}
+
+/**
+ * User.cohortParticipations
+ */
+export type User$cohortParticipationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CohortParticipant
+   */
+  select?: Prisma.CohortParticipantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CohortParticipant
+   */
+  omit?: Prisma.CohortParticipantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CohortParticipantInclude<ExtArgs> | null
+  where?: Prisma.CohortParticipantWhereInput
+  orderBy?: Prisma.CohortParticipantOrderByWithRelationInput | Prisma.CohortParticipantOrderByWithRelationInput[]
+  cursor?: Prisma.CohortParticipantWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CohortParticipantScalarFieldEnum | Prisma.CohortParticipantScalarFieldEnum[]
+}
+
+/**
+ * User.createdCohorts
+ */
+export type User$createdCohortsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProgrammeCohort
+   */
+  select?: Prisma.ProgrammeCohortSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProgrammeCohort
+   */
+  omit?: Prisma.ProgrammeCohortOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProgrammeCohortInclude<ExtArgs> | null
+  where?: Prisma.ProgrammeCohortWhereInput
+  orderBy?: Prisma.ProgrammeCohortOrderByWithRelationInput | Prisma.ProgrammeCohortOrderByWithRelationInput[]
+  cursor?: Prisma.ProgrammeCohortWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProgrammeCohortScalarFieldEnum | Prisma.ProgrammeCohortScalarFieldEnum[]
+}
+
+/**
+ * User.cohortMentorships
+ */
+export type User$cohortMentorshipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CohortMentor
+   */
+  select?: Prisma.CohortMentorSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CohortMentor
+   */
+  omit?: Prisma.CohortMentorOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CohortMentorInclude<ExtArgs> | null
+  where?: Prisma.CohortMentorWhereInput
+  orderBy?: Prisma.CohortMentorOrderByWithRelationInput | Prisma.CohortMentorOrderByWithRelationInput[]
+  cursor?: Prisma.CohortMentorWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CohortMentorScalarFieldEnum | Prisma.CohortMentorScalarFieldEnum[]
+}
+
+/**
+ * User.createdCourses
+ */
+export type User$createdCoursesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Course
+   */
+  select?: Prisma.CourseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Course
+   */
+  omit?: Prisma.CourseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CourseInclude<ExtArgs> | null
+  where?: Prisma.CourseWhereInput
+  orderBy?: Prisma.CourseOrderByWithRelationInput | Prisma.CourseOrderByWithRelationInput[]
+  cursor?: Prisma.CourseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CourseScalarFieldEnum | Prisma.CourseScalarFieldEnum[]
+}
+
+/**
+ * User.reviewedCourses
+ */
+export type User$reviewedCoursesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Course
+   */
+  select?: Prisma.CourseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Course
+   */
+  omit?: Prisma.CourseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CourseInclude<ExtArgs> | null
+  where?: Prisma.CourseWhereInput
+  orderBy?: Prisma.CourseOrderByWithRelationInput | Prisma.CourseOrderByWithRelationInput[]
+  cursor?: Prisma.CourseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CourseScalarFieldEnum | Prisma.CourseScalarFieldEnum[]
+}
+
+/**
+ * User.milestoneSubmissions
+ */
+export type User$milestoneSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MilestoneSubmission
+   */
+  select?: Prisma.MilestoneSubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MilestoneSubmission
+   */
+  omit?: Prisma.MilestoneSubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MilestoneSubmissionInclude<ExtArgs> | null
+  where?: Prisma.MilestoneSubmissionWhereInput
+  orderBy?: Prisma.MilestoneSubmissionOrderByWithRelationInput | Prisma.MilestoneSubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.MilestoneSubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MilestoneSubmissionScalarFieldEnum | Prisma.MilestoneSubmissionScalarFieldEnum[]
+}
+
+/**
+ * User.milestoneReviews
+ */
+export type User$milestoneReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MilestoneSubmission
+   */
+  select?: Prisma.MilestoneSubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MilestoneSubmission
+   */
+  omit?: Prisma.MilestoneSubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MilestoneSubmissionInclude<ExtArgs> | null
+  where?: Prisma.MilestoneSubmissionWhereInput
+  orderBy?: Prisma.MilestoneSubmissionOrderByWithRelationInput | Prisma.MilestoneSubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.MilestoneSubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MilestoneSubmissionScalarFieldEnum | Prisma.MilestoneSubmissionScalarFieldEnum[]
+}
+
+/**
+ * User.mentorMatches
+ */
+export type User$mentorMatchesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MentorMatch
+   */
+  select?: Prisma.MentorMatchSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MentorMatch
+   */
+  omit?: Prisma.MentorMatchOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MentorMatchInclude<ExtArgs> | null
+  where?: Prisma.MentorMatchWhereInput
+  orderBy?: Prisma.MentorMatchOrderByWithRelationInput | Prisma.MentorMatchOrderByWithRelationInput[]
+  cursor?: Prisma.MentorMatchWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MentorMatchScalarFieldEnum | Prisma.MentorMatchScalarFieldEnum[]
+}
+
+/**
+ * User.menteeMatches
+ */
+export type User$menteeMatchesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MentorMatch
+   */
+  select?: Prisma.MentorMatchSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MentorMatch
+   */
+  omit?: Prisma.MentorMatchOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MentorMatchInclude<ExtArgs> | null
+  where?: Prisma.MentorMatchWhereInput
+  orderBy?: Prisma.MentorMatchOrderByWithRelationInput | Prisma.MentorMatchOrderByWithRelationInput[]
+  cursor?: Prisma.MentorMatchWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MentorMatchScalarFieldEnum | Prisma.MentorMatchScalarFieldEnum[]
+}
+
+/**
+ * User.sessionsAsMentor
+ */
+export type User$sessionsAsMentorArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MentorSession
+   */
+  select?: Prisma.MentorSessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MentorSession
+   */
+  omit?: Prisma.MentorSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MentorSessionInclude<ExtArgs> | null
+  where?: Prisma.MentorSessionWhereInput
+  orderBy?: Prisma.MentorSessionOrderByWithRelationInput | Prisma.MentorSessionOrderByWithRelationInput[]
+  cursor?: Prisma.MentorSessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MentorSessionScalarFieldEnum | Prisma.MentorSessionScalarFieldEnum[]
+}
+
+/**
+ * User.sessionsAsMentee
+ */
+export type User$sessionsAsMenteeArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the MentorSession
+   */
+  select?: Prisma.MentorSessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the MentorSession
+   */
+  omit?: Prisma.MentorSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MentorSessionInclude<ExtArgs> | null
+  where?: Prisma.MentorSessionWhereInput
+  orderBy?: Prisma.MentorSessionOrderByWithRelationInput | Prisma.MentorSessionOrderByWithRelationInput[]
+  cursor?: Prisma.MentorSessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MentorSessionScalarFieldEnum | Prisma.MentorSessionScalarFieldEnum[]
 }
 
 /**

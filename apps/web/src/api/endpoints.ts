@@ -29,23 +29,60 @@ export const endpoints = {
 
   // Super Admin
   superAdmin: {
-    stats:     "/super-admin/stats",
-    audit:     "/super-admin/audit",
-    admins:    "/super-admin/admins",
-    adminInvite: "/super-admin/admins/invite",
-    adminRemove: (id: string) => `/super-admin/admins/${id}`,
-    settings:  "/super-admin/settings",
+    stats:            "/super-admin/stats",
+    audit:            "/super-admin/audit",
+    admins:           "/super-admin/admins",
+    adminInvite:      "/super-admin/admins/invite",
+    adminRemove:      (id: string) => `/super-admin/admins/${id}`,
+    adminSuspend:     (id: string) => `/super-admin/admins/${id}/suspend`,
+    adminActivate:    (id: string) => `/super-admin/admins/${id}/activate`,
+    adminResendInvite:(id: string) => `/super-admin/admins/${id}/resend-invite`,
+    settings:         "/super-admin/settings",
   },
 
   // Admin
   admin: {
     dashboard:    "/admin/dashboard",
-    users:        "/admin/users",
-    userStatus:   (id: string) => `/admin/users/${id}/status`,
-    userRole:     (id: string) => `/admin/users/${id}/role`,
-    userInvite:    "/admin/users/invite",
-    managers:      "/admin/managers",
-    managerInvite: "/admin/managers/invite",
+    activity:     "/admin/activity",
+    // Countries
+    countries:         "/admin/countries",
+    countryById:       (id: string) => `/admin/countries/${id}`,
+    countryStatus:     (id: string) => `/admin/countries/${id}/status`,
+    countryTiers:      (id: string) => `/admin/countries/${id}/tiers`,
+    // Users (members)
+    users:             "/admin/users",
+    userStatus:        (id: string) => `/admin/users/${id}/status`,
+    userRole:          (id: string) => `/admin/users/${id}/role`,
+    userInvite:        "/admin/users/invite",
+    userResendInvite:  (id: string) => `/admin/users/${id}/resend-invite`,
+    userHardDelete:    (id: string) => `/admin/users/${id}/hard-delete`,
+    // Managers
+    managers:          "/admin/managers",
+    managerInvite:     "/admin/managers/invite",
+    // Mentors
+    mentors:           "/admin/mentors",
+    mentorInvite:      "/admin/mentors/invite",
+    // Courses
+    courses:              "/admin/courses",
+    courseById:           (id: string) => `/admin/courses/${id}`,
+    courseStatus:         (id: string) => `/admin/courses/${id}/status`,
+    courseModules:        (id: string) => `/admin/courses/${id}/modules`,
+    courseModule:         (id: string, moduleId: string) => `/admin/courses/${id}/modules/${moduleId}`,
+    courseLessons:        (id: string, moduleId: string) => `/admin/courses/${id}/modules/${moduleId}/lessons`,
+    courseLesson:         (id: string, moduleId: string, lessonId: string) => `/admin/courses/${id}/modules/${moduleId}/lessons/${lessonId}`,
+    // Programmes
+    programmes:       "/admin/programmes",
+    programmeById:    (id: string) => `/admin/programmes/${id}`,
+    programmeCohorts: (id: string) => `/admin/programmes/${id}/cohorts`,
+    cohortById:       (programmeId: string, cohortId: string) => `/admin/programmes/${programmeId}/cohorts/${cohortId}`,
+    // Cohort detail & management (flat routes)
+    cohortDetail:       (cohortId: string) => `/admin/cohorts/${cohortId}/detail`,
+    cohortCourses:      (cohortId: string) => `/admin/cohorts/${cohortId}/courses`,
+    cohortCourse:       (cohortId: string, courseId: string) => `/admin/cohorts/${cohortId}/courses/${courseId}`,
+    cohortMentors:      (cohortId: string) => `/admin/cohorts/${cohortId}/mentors`,
+    cohortMentor:       (cohortId: string, mentorId: string) => `/admin/cohorts/${cohortId}/mentors/${mentorId}`,
+    cohortMilestones:   (cohortId: string) => `/admin/cohorts/${cohortId}/milestones`,
+    cohortMilestone:    (cohortId: string, milestoneId: string) => `/admin/cohorts/${cohortId}/milestones/${milestoneId}`,
   },
 
   // Projects

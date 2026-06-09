@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt, { SignOptions } from "jsonwebtoken";
-import { Role } from "@repo/types";
+import { Role } from "@repo/database";
 import env from "../../config/env.config.js";
 import { prisma } from "@repo/database";
 
@@ -34,7 +34,7 @@ export class AuthService {
       data: {
         email:         data.email.trim().toLowerCase(),
         password:      hashed,
-        role:          data.role ?? Role.USER,
+        role:          data.role ?? Role.MEMBER,
         accountStatus: "PENDING",
       },
     });

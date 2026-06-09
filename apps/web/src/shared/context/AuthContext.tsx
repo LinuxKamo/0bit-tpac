@@ -3,7 +3,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { authService } from "@/features/auth/services/auth.service";
 import { useRouter } from "next/navigation";
 
-export type UserRole = "SUPER_ADMIN" | "ADMIN" | "MANAGER" | "USER";
+export type UserRole =
+  | "SUPER_ADMIN"
+  | "ADMIN"
+  | "MANAGER"
+  | "CORPORATE_ADMIN"
+  | "MENTOR"
+  | "MEMBER";
 
 export interface AuthUser {
   id: string;
@@ -34,10 +40,12 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const ROLE_ROUTES: Record<string, string> = {
-  SUPER_ADMIN: "/super-admin",
-  ADMIN:       "/admin",
-  MANAGER:     "/manager",
-  USER:        "/user",
+  SUPER_ADMIN:     "/super-admin",
+  ADMIN:           "/admin",
+  MANAGER:         "/manager",
+  CORPORATE_ADMIN: "/corporate",
+  MENTOR:          "/mentor",
+  MEMBER:          "/member",
 };
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -49,7 +57,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const response = await authService.getMe();
       setUser(response.data?.user || null);
-    } catch {
+    } catch (err: any) {
+      // Always clear the cookie on any getMe failure so the middleware doesn't
+      // redirect /login → protected route → back here → infinite blink loop.
+      // logout() clears the server-side httpOnly cookie.
+      try { await authService.logout(); } catch { /* ignore — cookie may already be gone */ }
+      localStorage.removeItem("auth_token");
       setUser(null);
     } finally {
       setIsLoading(false);

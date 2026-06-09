@@ -13,7 +13,9 @@ const __dirname  = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, "../../../.env") });
 
 async function main() {
-  if (!process.env.DATABASE_URL) throw new Error("❌ DATABASE_URL missing from .env");
+  if (!process.env.DATABASE_URL)               throw new Error("❌ DATABASE_URL missing from .env");
+  if (!process.env.SEED_SUPER_ADMIN_EMAIL)     throw new Error("❌ SEED_SUPER_ADMIN_EMAIL missing from .env");
+  if (!process.env.SEED_SUPER_ADMIN_PASSWORD)  throw new Error("❌ SEED_SUPER_ADMIN_PASSWORD missing from .env");
 
   const pool    = new pg.Pool({ connectionString: process.env.DIRECT_URL || process.env.DATABASE_URL });
   const adapter = new PrismaPg(pool);
@@ -31,15 +33,21 @@ async function main() {
     await prisma.systemSetting.upsert({
       where:  { key: "app_name" },
       update: {},
-      create: { key: "app_name", value: "My App" },
+      create: { key: "app_name", value: "Tshimologong Platform" },
     });
 
-    const password   = await hash("SuperAdmin123!", 12);
+    await prisma.systemSetting.upsert({
+      where:  { key: "platform_version" },
+      update: {},
+      create: { key: "platform_version", value: "1.0.0" },
+    });
+
+    const password   = await hash(process.env.SEED_SUPER_ADMIN_PASSWORD, 12);
     const superAdmin = await prisma.user.upsert({
-      where:  { email: "superadmin@example.com" },
+      where:  { email: process.env.SEED_SUPER_ADMIN_EMAIL },
       update: {},
       create: {
-        email:         "superadmin@example.com",
+        email:         process.env.SEED_SUPER_ADMIN_EMAIL,
         password,
         role:          "SUPER_ADMIN",
         accountStatus: "ACTIVE",
@@ -50,8 +58,8 @@ async function main() {
     });
 
     console.log(`✅ Super admin: ${superAdmin.email}`);
-    console.log(`   Password: SuperAdmin123!`);
     console.log(`\n⚠️  Change this password immediately after first login!`);
+    console.log(`   (Credentials are set in .env — SEED_SUPER_ADMIN_EMAIL / SEED_SUPER_ADMIN_PASSWORD)`);
   } catch (error: any) {
     console.error("❌ Seed error:", error.message);
     process.exit(1);
