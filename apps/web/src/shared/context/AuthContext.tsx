@@ -63,6 +63,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // logout() clears the server-side httpOnly cookie.
       try { await authService.logout(); } catch { /* ignore — cookie may already be gone */ }
       localStorage.removeItem("auth_token");
+      await fetch("/api/auth/session", { method: "DELETE" }).catch(() => {});
       setUser(null);
     } finally {
       setIsLoading(false);
@@ -73,13 +74,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => { loadUser(); }, []);
 
-  const login = async (email: string, password: string) => {   
-
-    const response = await authService.login({ email, password });  
+  const login = async (email: string, password: string) => {
+    const response = await authService.login({ email, password });
     const { user, token } = response.data ?? {};
 
+    if (token) {
+      localStorage.setItem("auth_token", token);
+      // Set the token cookie on the Vercel domain so Next.js middleware can read it
+      await fetch("/api/auth/session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
+      });
+    }
 
-    if (token) localStorage.setItem("auth_token", token);
     setUser(user ?? null);
     if (user) {
       window.location.href = ROLE_ROUTES[user.role] ?? "/";
@@ -89,6 +97,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     await authService.logout();
     localStorage.removeItem("auth_token");
+    await fetch("/api/auth/session", { method: "DELETE" });
     setUser(null);
     router.push("/login");
   };
