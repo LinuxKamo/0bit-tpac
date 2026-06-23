@@ -57,15 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const response = await authService.getMe();
       setUser(response.data?.user || null);
-    } catch (err: any) {
-      const status = err?.response?.status;
-      // Only clear session on definitive auth rejection (401/403), not network errors.
-      // Network errors in prod (CORS, timeout) should not log the user out.
-      if (status === 401 || status === 403) {
-        try { await authService.logout(); } catch { /* ignore */ }
-        localStorage.removeItem("auth_token");
-        await fetch("/api/auth/session", { method: "DELETE" }).catch(() => {});
-      }
+    } catch {
       setUser(null);
     } finally {
       setIsLoading(false);
@@ -82,19 +74,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     if (token) localStorage.setItem("auth_token", token);
     setUser(user ?? null);
-
-    if (user && token) {
-      const redirect = ROLE_ROUTES[user.role] ?? "/";
-      // Navigate through the Next.js callback route so it sets the cookie
-      // on the Vercel domain in the same response as the redirect.
-      window.location.href = `/api/auth/callback?token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(redirect)}`;
+    if (user) {
+      window.location.href = ROLE_ROUTES[user.role] ?? "/";
     }
   };
 
   const logout = async () => {
     await authService.logout();
     localStorage.removeItem("auth_token");
-    await fetch("/api/auth/session", { method: "DELETE" });
     setUser(null);
     router.push("/login");
   };
