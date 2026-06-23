@@ -57,7 +57,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const response = await authService.getMe();
       setUser(response.data?.user || null);
-    } catch {
+    } catch (err: any) {
+      console.error("[AUTH] getMe failed:", {
+        status: err?.response?.status,
+        data: err?.response?.data,
+        message: err?.message,
+        token: typeof window !== "undefined" ? !!localStorage.getItem("auth_token") : "ssr",
+      });
       setUser(null);
     } finally {
       setIsLoading(false);
