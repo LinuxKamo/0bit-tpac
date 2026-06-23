@@ -58,12 +58,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const response = await authService.getMe();
       setUser(response.data?.user || null);
     } catch (err: any) {
-      // Always clear the cookie on any getMe failure so the middleware doesn't
-      // redirect /login → protected route → back here → infinite blink loop.
-      // logout() clears the server-side httpOnly cookie.
-      try { await authService.logout(); } catch { /* ignore — cookie may already be gone */ }
-      localStorage.removeItem("auth_token");
-      await fetch("/api/auth/session", { method: "DELETE" }).catch(() => {});
+      const status = err?.response?.status;
+      // Only clear session on definitive auth rejection (401/403), not network errors.
+      // Network errors in prod (CORS, timeout) should not log the user out.
+      if (status === 401 || status === 403) {
+        try { await authService.logout(); } catch { /* ignore */ }
+        localStorage.removeItem("auth_token");
+        await fetch("/api/auth/session", { method: "DELETE" }).catch(() => {});
+      }
       setUser(null);
     } finally {
       setIsLoading(false);
