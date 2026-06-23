@@ -80,19 +80,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const response = await authService.login({ email, password });
     const { user, token } = response.data ?? {};
 
-    if (token) {
-      localStorage.setItem("auth_token", token);
-      // Set the token cookie on the Vercel domain so Next.js middleware can read it
-      await fetch("/api/auth/session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token }),
-      });
-    }
-
+    if (token) localStorage.setItem("auth_token", token);
     setUser(user ?? null);
-    if (user) {
-      window.location.href = ROLE_ROUTES[user.role] ?? "/";
+
+    if (user && token) {
+      const redirect = ROLE_ROUTES[user.role] ?? "/";
+      // Navigate through the Next.js callback route so it sets the cookie
+      // on the Vercel domain in the same response as the redirect.
+      window.location.href = `/api/auth/callback?token=${encodeURIComponent(token)}&redirect=${encodeURIComponent(redirect)}`;
     }
   };
 
