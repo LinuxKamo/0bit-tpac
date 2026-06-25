@@ -42,6 +42,7 @@ export type CohortMilestoneMinAggregateOutputType = {
   dueDate: Date | null
   order: number | null
   isRequired: boolean | null
+  submissionType: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -54,6 +55,7 @@ export type CohortMilestoneMaxAggregateOutputType = {
   dueDate: Date | null
   order: number | null
   isRequired: boolean | null
+  submissionType: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -66,6 +68,7 @@ export type CohortMilestoneCountAggregateOutputType = {
   dueDate: number
   order: number
   isRequired: number
+  submissionType: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -88,6 +91,7 @@ export type CohortMilestoneMinAggregateInputType = {
   dueDate?: true
   order?: true
   isRequired?: true
+  submissionType?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -100,6 +104,7 @@ export type CohortMilestoneMaxAggregateInputType = {
   dueDate?: true
   order?: true
   isRequired?: true
+  submissionType?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +117,7 @@ export type CohortMilestoneCountAggregateInputType = {
   dueDate?: true
   order?: true
   isRequired?: true
+  submissionType?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -211,6 +217,7 @@ export type CohortMilestoneGroupByOutputType = {
   dueDate: Date | null
   order: number
   isRequired: boolean
+  submissionType: string
   createdAt: Date
   updatedAt: Date
   _count: CohortMilestoneCountAggregateOutputType | null
@@ -246,6 +253,7 @@ export type CohortMilestoneWhereInput = {
   dueDate?: Prisma.DateTimeNullableFilter<"CohortMilestone"> | Date | string | null
   order?: Prisma.IntFilter<"CohortMilestone"> | number
   isRequired?: Prisma.BoolFilter<"CohortMilestone"> | boolean
+  submissionType?: Prisma.StringFilter<"CohortMilestone"> | string
   createdAt?: Prisma.DateTimeFilter<"CohortMilestone"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CohortMilestone"> | Date | string
   cohort?: Prisma.XOR<Prisma.ProgrammeCohortScalarRelationFilter, Prisma.ProgrammeCohortWhereInput>
@@ -260,6 +268,7 @@ export type CohortMilestoneOrderByWithRelationInput = {
   dueDate?: Prisma.SortOrderInput | Prisma.SortOrder
   order?: Prisma.SortOrder
   isRequired?: Prisma.SortOrder
+  submissionType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   cohort?: Prisma.ProgrammeCohortOrderByWithRelationInput
@@ -277,6 +286,7 @@ export type CohortMilestoneWhereUniqueInput = Prisma.AtLeast<{
   dueDate?: Prisma.DateTimeNullableFilter<"CohortMilestone"> | Date | string | null
   order?: Prisma.IntFilter<"CohortMilestone"> | number
   isRequired?: Prisma.BoolFilter<"CohortMilestone"> | boolean
+  submissionType?: Prisma.StringFilter<"CohortMilestone"> | string
   createdAt?: Prisma.DateTimeFilter<"CohortMilestone"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CohortMilestone"> | Date | string
   cohort?: Prisma.XOR<Prisma.ProgrammeCohortScalarRelationFilter, Prisma.ProgrammeCohortWhereInput>
@@ -291,6 +301,7 @@ export type CohortMilestoneOrderByWithAggregationInput = {
   dueDate?: Prisma.SortOrderInput | Prisma.SortOrder
   order?: Prisma.SortOrder
   isRequired?: Prisma.SortOrder
+  submissionType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CohortMilestoneCountOrderByAggregateInput
@@ -311,6 +322,7 @@ export type CohortMilestoneScalarWhereWithAggregatesInput = {
   dueDate?: Prisma.DateTimeNullableWithAggregatesFilter<"CohortMilestone"> | Date | string | null
   order?: Prisma.IntWithAggregatesFilter<"CohortMilestone"> | number
   isRequired?: Prisma.BoolWithAggregatesFilter<"CohortMilestone"> | boolean
+  submissionType?: Prisma.StringWithAggregatesFilter<"CohortMilestone"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CohortMilestone"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CohortMilestone"> | Date | string
 }
@@ -322,6 +334,7 @@ export type CohortMilestoneCreateInput = {
   dueDate?: Date | string | null
   order?: number
   isRequired?: boolean
+  submissionType?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   cohort: Prisma.ProgrammeCohortCreateNestedOneWithoutMilestonesInput
@@ -336,6 +349,7 @@ export type CohortMilestoneUncheckedCreateInput = {
   dueDate?: Date | string | null
   order?: number
   isRequired?: boolean
+  submissionType?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   submissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutMilestoneInput
@@ -348,6 +362,7 @@ export type CohortMilestoneUpdateInput = {
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionType?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cohort?: Prisma.ProgrammeCohortUpdateOneRequiredWithoutMilestonesNestedInput
@@ -362,6 +377,7 @@ export type CohortMilestoneUncheckedUpdateInput = {
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionType?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutMilestoneNestedInput
@@ -375,6 +391,7 @@ export type CohortMilestoneCreateManyInput = {
   dueDate?: Date | string | null
   order?: number
   isRequired?: boolean
+  submissionType?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -386,6 +403,7 @@ export type CohortMilestoneUpdateManyMutationInput = {
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionType?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -398,6 +416,7 @@ export type CohortMilestoneUncheckedUpdateManyInput = {
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionType?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -420,6 +439,7 @@ export type CohortMilestoneCountOrderByAggregateInput = {
   dueDate?: Prisma.SortOrder
   order?: Prisma.SortOrder
   isRequired?: Prisma.SortOrder
+  submissionType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -436,6 +456,7 @@ export type CohortMilestoneMaxOrderByAggregateInput = {
   dueDate?: Prisma.SortOrder
   order?: Prisma.SortOrder
   isRequired?: Prisma.SortOrder
+  submissionType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -448,6 +469,7 @@ export type CohortMilestoneMinOrderByAggregateInput = {
   dueDate?: Prisma.SortOrder
   order?: Prisma.SortOrder
   isRequired?: Prisma.SortOrder
+  submissionType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -524,6 +546,7 @@ export type CohortMilestoneCreateWithoutCohortInput = {
   dueDate?: Date | string | null
   order?: number
   isRequired?: boolean
+  submissionType?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   submissions?: Prisma.MilestoneSubmissionCreateNestedManyWithoutMilestoneInput
@@ -536,6 +559,7 @@ export type CohortMilestoneUncheckedCreateWithoutCohortInput = {
   dueDate?: Date | string | null
   order?: number
   isRequired?: boolean
+  submissionType?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   submissions?: Prisma.MilestoneSubmissionUncheckedCreateNestedManyWithoutMilestoneInput
@@ -578,6 +602,7 @@ export type CohortMilestoneScalarWhereInput = {
   dueDate?: Prisma.DateTimeNullableFilter<"CohortMilestone"> | Date | string | null
   order?: Prisma.IntFilter<"CohortMilestone"> | number
   isRequired?: Prisma.BoolFilter<"CohortMilestone"> | boolean
+  submissionType?: Prisma.StringFilter<"CohortMilestone"> | string
   createdAt?: Prisma.DateTimeFilter<"CohortMilestone"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CohortMilestone"> | Date | string
 }
@@ -589,6 +614,7 @@ export type CohortMilestoneCreateWithoutSubmissionsInput = {
   dueDate?: Date | string | null
   order?: number
   isRequired?: boolean
+  submissionType?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   cohort: Prisma.ProgrammeCohortCreateNestedOneWithoutMilestonesInput
@@ -602,6 +628,7 @@ export type CohortMilestoneUncheckedCreateWithoutSubmissionsInput = {
   dueDate?: Date | string | null
   order?: number
   isRequired?: boolean
+  submissionType?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -629,6 +656,7 @@ export type CohortMilestoneUpdateWithoutSubmissionsInput = {
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionType?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cohort?: Prisma.ProgrammeCohortUpdateOneRequiredWithoutMilestonesNestedInput
@@ -642,6 +670,7 @@ export type CohortMilestoneUncheckedUpdateWithoutSubmissionsInput = {
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionType?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -653,6 +682,7 @@ export type CohortMilestoneCreateManyCohortInput = {
   dueDate?: Date | string | null
   order?: number
   isRequired?: boolean
+  submissionType?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -664,6 +694,7 @@ export type CohortMilestoneUpdateWithoutCohortInput = {
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionType?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissions?: Prisma.MilestoneSubmissionUpdateManyWithoutMilestoneNestedInput
@@ -676,6 +707,7 @@ export type CohortMilestoneUncheckedUpdateWithoutCohortInput = {
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionType?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   submissions?: Prisma.MilestoneSubmissionUncheckedUpdateManyWithoutMilestoneNestedInput
@@ -688,6 +720,7 @@ export type CohortMilestoneUncheckedUpdateManyWithoutCohortInput = {
   dueDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  submissionType?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -731,6 +764,7 @@ export type CohortMilestoneSelect<ExtArgs extends runtime.Types.Extensions.Inter
   dueDate?: boolean
   order?: boolean
   isRequired?: boolean
+  submissionType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   cohort?: boolean | Prisma.ProgrammeCohortDefaultArgs<ExtArgs>
@@ -746,6 +780,7 @@ export type CohortMilestoneSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   dueDate?: boolean
   order?: boolean
   isRequired?: boolean
+  submissionType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   cohort?: boolean | Prisma.ProgrammeCohortDefaultArgs<ExtArgs>
@@ -759,6 +794,7 @@ export type CohortMilestoneSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   dueDate?: boolean
   order?: boolean
   isRequired?: boolean
+  submissionType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   cohort?: boolean | Prisma.ProgrammeCohortDefaultArgs<ExtArgs>
@@ -772,11 +808,12 @@ export type CohortMilestoneSelectScalar = {
   dueDate?: boolean
   order?: boolean
   isRequired?: boolean
+  submissionType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CohortMilestoneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cohortId" | "title" | "description" | "dueDate" | "order" | "isRequired" | "createdAt" | "updatedAt", ExtArgs["result"]["cohortMilestone"]>
+export type CohortMilestoneOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "cohortId" | "title" | "description" | "dueDate" | "order" | "isRequired" | "submissionType" | "createdAt" | "updatedAt", ExtArgs["result"]["cohortMilestone"]>
 export type CohortMilestoneInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cohort?: boolean | Prisma.ProgrammeCohortDefaultArgs<ExtArgs>
   submissions?: boolean | Prisma.CohortMilestone$submissionsArgs<ExtArgs>
@@ -803,6 +840,7 @@ export type $CohortMilestonePayload<ExtArgs extends runtime.Types.Extensions.Int
     dueDate: Date | null
     order: number
     isRequired: boolean
+    submissionType: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["cohortMilestone"]>
@@ -1237,6 +1275,7 @@ export interface CohortMilestoneFieldRefs {
   readonly dueDate: Prisma.FieldRef<"CohortMilestone", 'DateTime'>
   readonly order: Prisma.FieldRef<"CohortMilestone", 'Int'>
   readonly isRequired: Prisma.FieldRef<"CohortMilestone", 'Boolean'>
+  readonly submissionType: Prisma.FieldRef<"CohortMilestone", 'String'>
   readonly createdAt: Prisma.FieldRef<"CohortMilestone", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"CohortMilestone", 'DateTime'>
 }

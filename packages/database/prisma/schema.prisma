@@ -24,7 +24,6 @@ datasource db {
   provider = "postgresql"
 }
 
-
 // ─── Enums ────────────────────────────────────────────────────────────────────
 
 enum Role {
@@ -34,6 +33,8 @@ enum Role {
   CORPORATE_ADMIN
   MENTOR
   MEMBER
+  DEVELOPER
+  CLIENT
 }
 
 enum AccountStatus {
@@ -44,20 +45,20 @@ enum AccountStatus {
 }
 
 enum CountryStatus {
-  DRAFT         // internal only — not visible to public
-  COMING_SOON   // public waitlist enabled
-  ACTIVE        // fully live
-  INACTIVE      // temporarily disabled
+  DRAFT // internal only — not visible to public
+  COMING_SOON // public waitlist enabled
+  ACTIVE // fully live
+  INACTIVE // temporarily disabled
 }
 
 // Structural tier slots — names and prices are configured per country.
 // The slot is the system identity; CountryTier holds the display config.
 enum TierSlot {
-  EXPLORER   // free, top-of-funnel
-  BUILDER    // core paid individual tier
-  FOUNDER    // premium entrepreneur tier
-  CORPORATE  // B2B bulk seat tier
-  DIASPORA   // Pan-African outside SA
+  EXPLORER // free, top-of-funnel
+  BUILDER // core paid individual tier
+  FOUNDER // premium entrepreneur tier
+  CORPORATE // B2B bulk seat tier
+  DIASPORA // Pan-African outside SA
 }
 
 enum ProfileType {
@@ -66,29 +67,29 @@ enum ProfileType {
 }
 
 enum ProgrammePhase {
-  APPLICATION  // accepting applications
-  SELECTION    // reviewing applicants
-  ACTIVE       // cohort is running
-  DEMO_DAY     // demo day imminent
-  GRADUATED    // cohort complete
+  APPLICATION // accepting applications
+  SELECTION // reviewing applicants
+  ACTIVE // cohort is running
+  DEMO_DAY // demo day imminent
+  GRADUATED // cohort complete
 }
 
 enum EnrollmentType {
-  OPEN         // any eligible tier member can join directly
-  APPLICATION  // must apply and be selected
+  OPEN // any eligible tier member can join directly
+  APPLICATION // must apply and be selected
 }
 
 enum ScheduleType {
-  ONE_TIME     // runs once (e.g. Builders Residency annual)
-  RECURRING    // repeats on a cadence (e.g. Design Thinking monthly)
+  ONE_TIME // runs once (e.g. Builders Residency annual)
+  RECURRING // repeats on a cadence (e.g. Design Thinking monthly)
 }
 
 enum CourseStatus {
-  DRAFT        // being built
-  IN_REVIEW    // submitted for review
-  APPROVED     // reviewed and approved, ready to assign
-  PUBLISHED    // live — assigned to cohorts or tier library
-  ARCHIVED     // no longer in use
+  DRAFT // being built
+  IN_REVIEW // submitted for review
+  APPROVED // reviewed and approved, ready to assign
+  PUBLISHED // live — assigned to cohorts or tier library
+  ARCHIVED // no longer in use
 }
 
 enum LessonType {
@@ -114,15 +115,15 @@ enum MilestoneStatus {
 
 enum ContentType {
   COURSE
-  WORKSHOP     // scheduled live session
-  CERTIFICATE  // uploaded graduation certificate
+  WORKSHOP // scheduled live session
+  CERTIFICATE // uploaded graduation certificate
 }
 
 enum EventType {
-  PUBLIC       // visible and open to all (including Explorer)
-  MEMBER       // requires any paid tier
-  COHORT       // attached to a programme cohort
-  CORPORATE    // corporate-scoped event
+  PUBLIC // visible and open to all (including Explorer)
+  MEMBER // requires any paid tier
+  COHORT // attached to a programme cohort
+  CORPORATE // corporate-scoped event
 }
 
 enum OpportunityType {
@@ -166,7 +167,6 @@ enum RegistrationMode {
   SELF_REGISTER_AUTO
 }
 
-
 // ─── User ─────────────────────────────────────────────────────────────────────
 
 model User {
@@ -191,7 +191,7 @@ model User {
   lastActiveAt         DateTime?
 
   // OAuth
-  googleId           String?  @unique
+  googleId           String? @unique
   googleRefreshToken String?
 
   // Invite chain — who created this account
@@ -210,33 +210,33 @@ model User {
   organisation   Organisation? @relation("OrgMembers", fields: [organisationId], references: [id])
 
   // Profile extensions
-  memberProfile  MemberProfile?
-  mentorProfile  MentorProfile?
+  memberProfile MemberProfile?
+  mentorProfile MentorProfile?
 
   // Relations
-  managedCountries       CountryManager[]
-  subscriptions          Subscription[]
-  contentEnrollments     ContentEnrollment[]
-  eventRegistrations     EventRegistration[]
-  opportunityBookmarks   OpportunityBookmark[]
-  physicalBookings       PhysicalAccessBooking[]
-  waitlistEntries        WaitlistEntry[]
-  communityMemberships   CommunityGroupMember[]
-  posts                  Post[]
-  organisationSeats      OrganisationSeat[]
-  cohortParticipations   CohortParticipant[]
-  createdCohorts         ProgrammeCohort[]      @relation("CohortCreator")
-  cohortMentorships      CohortMentor[]         @relation("CohortMentors")
-  createdCourses         Course[]               @relation("CourseCreator")
-  reviewedCourses        Course[]               @relation("CourseReviewer")
-  milestoneSubmissions   MilestoneSubmission[]  @relation("MilestoneSubmissions")
-  milestoneReviews       MilestoneSubmission[]  @relation("MilestoneReviews")
-  mentorMatches          MentorMatch[]          @relation("MentorMatches")
-  menteeMatches          MentorMatch[]          @relation("MenteeMatches")
-  sessionsAsMentor       MentorSession[]        @relation("SessionMentor")
-  sessionsAsMentee       MentorSession[]        @relation("SessionMentee")
-  auditLogs              AuditLog[]
-  notifications          Notification[]
+  managedCountries     CountryManager[]
+  subscriptions        Subscription[]
+  contentEnrollments   ContentEnrollment[]
+  eventRegistrations   EventRegistration[]
+  opportunityBookmarks OpportunityBookmark[]
+  physicalBookings     PhysicalAccessBooking[]
+  waitlistEntries      WaitlistEntry[]
+  communityMemberships CommunityGroupMember[]
+  posts                Post[]
+  organisationSeats    OrganisationSeat[]
+  cohortParticipations CohortParticipant[]
+  createdCohorts       ProgrammeCohort[]       @relation("CohortCreator")
+  cohortMentorships    CohortMentor[]          @relation("CohortMentors")
+  createdCourses       Course[]                @relation("CourseCreator")
+  reviewedCourses      Course[]                @relation("CourseReviewer")
+  milestoneSubmissions MilestoneSubmission[]   @relation("MilestoneSubmissions")
+  milestoneReviews     MilestoneSubmission[]   @relation("MilestoneReviews")
+  mentorMatches        MentorMatch[]           @relation("MentorMatches")
+  menteeMatches        MentorMatch[]           @relation("MenteeMatches")
+  sessionsAsMentor     MentorSession[]         @relation("SessionMentor")
+  sessionsAsMentee     MentorSession[]         @relation("SessionMentee")
+  auditLogs            AuditLog[]
+  notifications        Notification[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -250,20 +250,19 @@ model User {
   @@index([invitedById])
 }
 
-
 // ─── Country ──────────────────────────────────────────────────────────────────
 // The root configuration unit. Every country is a full platform instance.
 
 model Country {
-  id   String @id @default(cuid())
+  id String @id @default(cuid())
 
   // Identity
   name           String
   code           String        @unique // ISO 3166-1 alpha-2 (e.g. "ZA", "KE", "NG")
   flagEmoji      String?
-  currency       String        // ISO 4217 (e.g. "ZAR", "USD", "KES")
-  currencySymbol String?       // display symbol (e.g. "R", "$", "KSh")
-  timezone       String        // IANA (e.g. "Africa/Johannesburg")
+  currency       String // ISO 4217 (e.g. "ZAR", "USD", "KES")
+  currencySymbol String? // display symbol (e.g. "R", "$", "KSh")
+  timezone       String // IANA (e.g. "Africa/Johannesburg")
   status         CountryStatus @default(DRAFT)
 
   // Physical access — co-working (SA only at launch)
@@ -273,16 +272,16 @@ model Country {
 
   // Payment gateway — per-country, not global
   paymentGateway    String? // "payfast" | "stripe" | "manual"
-  paymentConfigJson Json?   // gateway-specific keys/webhook secrets (encrypted at app layer)
+  paymentConfigJson Json? // gateway-specific keys/webhook secrets (encrypted at app layer)
 
   // Community configuration
-  chapterName         String?  // e.g. "Tshimologong Joburg"
-  chapterLeadId       String?  // User id of the chapter lead (Manager)
-  showGlobalContent   Boolean  @default(true)  // scaffold: show global library while local content is being built
+  chapterName       String? // e.g. "Tshimologong Joburg"
+  chapterLeadId     String? // User id of the chapter lead (Manager)
+  showGlobalContent Boolean @default(true) // scaffold: show global library while local content is being built
 
   // Compliance
-  complianceFramework String?  // e.g. "BBBEE+ESD" | "local" | null
-  taxConfigJson       Json?    // flexible per-country tax config
+  complianceFramework String? // e.g. "BBBEE+ESD" | "local" | null
+  taxConfigJson       Json? // flexible per-country tax config
   invoiceTemplateId   String?
 
   // Onboarding messaging
@@ -293,17 +292,17 @@ model Country {
   registrationMode RegistrationMode @default(INVITE_ONLY)
 
   // Relations
-  tiers          CountryTier[]
-  managers       CountryManager[]
-  members        User[]
-  organisations  Organisation[]
-  programmes     Programme[]
-  events         Event[]
-  opportunities  Opportunity[]
-  communityGroups CommunityGroup[]
-  waitlistEntries WaitlistEntry[]
+  tiers            CountryTier[]
+  managers         CountryManager[]
+  members          User[]
+  organisations    Organisation[]
+  programmes       Programme[]
+  events           Event[]
+  opportunities    Opportunity[]
+  communityGroups  CommunityGroup[]
+  waitlistEntries  WaitlistEntry[]
   physicalBookings PhysicalAccessBooking[]
-  invoices       Invoice[]
+  invoices         Invoice[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -311,7 +310,6 @@ model Country {
   @@index([code])
   @@index([status])
 }
-
 
 // ── CountryManager (Country ↔ Manager many-to-many) ──────────────────────────
 
@@ -329,7 +327,6 @@ model CountryManager {
   @@index([userId])
 }
 
-
 // ─── CountryTier ──────────────────────────────────────────────────────────────
 // Admin configures one record per TierSlot per country.
 // All pricing, names, and feature flags live here — nothing is hardcoded.
@@ -340,7 +337,7 @@ model CountryTier {
   country   Country @relation(fields: [countryId], references: [id], onDelete: Cascade)
 
   slot          TierSlot // structural identity — unique per country
-  name          String   // display name (e.g. "Explorer", "Builder" — configurable)
+  name          String // display name (e.g. "Explorer", "Builder" — configurable)
   description   String?
   price         Decimal  @db.Decimal(10, 2) // 0.00 for free tiers
   billingCycle  String   @default("monthly") // "monthly" | "annual" | "custom"
@@ -368,7 +365,6 @@ model CountryTier {
   @@index([isActive])
 }
 
-
 // ─── MemberProfile ────────────────────────────────────────────────────────────
 // Member-specific data separated from User to keep User lean.
 
@@ -385,7 +381,7 @@ model MemberProfile {
   companyName    String?
   companyWebsite String?
   industry       String?
-  stage          String?  // "idea" | "mvp" | "revenue" | "scaling"
+  stage          String? // "idea" | "mvp" | "revenue" | "scaling"
 
   // Public profile
   linkedinUrl String?
@@ -395,9 +391,9 @@ model MemberProfile {
   interests   String[]
 
   // Usage counters — reset monthly by a background job
-  coursesUsedThisMonth  Int      @default(0)
-  mentorSessionsUsed    Int      @default(0)
-  lastUsageResetAt      DateTime?
+  coursesUsedThisMonth Int       @default(0)
+  mentorSessionsUsed   Int       @default(0)
+  lastUsageResetAt     DateTime?
 
   // Onboarding state
   onboardingCompleted Boolean @default(false)
@@ -410,7 +406,6 @@ model MemberProfile {
   @@index([profileType])
 }
 
-
 // ─── Organisation (Corporate / B2B accounts) ─────────────────────────────────
 
 model Organisation {
@@ -422,32 +417,31 @@ model Organisation {
   logoUrl  String?
   website  String?
   industry String?
-  size     String?  // "1-10" | "11-50" | "51-200" | "200+"
+  size     String? // "1-10" | "11-50" | "51-200" | "200+"
 
   // Seat allocation
   totalSeats Int @default(0)
   usedSeats  Int @default(0)
 
   // Billing
-  billingEmail      String?
-  vatNumber         String?
+  billingEmail       String?
+  vatNumber          String?
   billingAddressJson Json?
 
   // Compliance (SA BBBEE / ESD)
-  bbbeeLevel  String?
-  esdCertUrl  String?
+  bbbeeLevel String?
+  esdCertUrl String?
 
-  members              User[]               @relation("OrgMembers")
-  seats                OrganisationSeat[]
-  invoices             Invoice[]
-  cohortParticipants   CohortParticipant[]
+  members            User[]              @relation("OrgMembers")
+  seats              OrganisationSeat[]
+  invoices           Invoice[]
+  cohortParticipants CohortParticipant[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([countryId])
 }
-
 
 // ── OrganisationSeat ──────────────────────────────────────────────────────────
 
@@ -460,7 +454,7 @@ model OrganisationSeat {
   user        User?   @relation(fields: [userId], references: [id])
   inviteEmail String? // pre-invite before user registers
 
-  status      String   @default("pending") // "pending" | "active" | "revoked"
+  status      String    @default("pending") // "pending" | "active" | "revoked"
   activatedAt DateTime?
   revokedAt   DateTime?
 
@@ -471,7 +465,6 @@ model OrganisationSeat {
   @@index([userId])
   @@index([status])
 }
-
 
 // ─── MentorProfile ────────────────────────────────────────────────────────────
 // Appointed from Alumni pool by Manager/Admin — cannot self-assign.
@@ -486,7 +479,7 @@ model MentorProfile {
   expertise   String[]
   industries  String[]
   linkedinUrl String?
-  calendlyUrl String?  // booking link for self-scheduling
+  calendlyUrl String? // booking link for self-scheduling
 
   // Availability config
   maxMentees       Int @default(3)
@@ -500,7 +493,6 @@ model MentorProfile {
   updatedAt DateTime @updatedAt
 }
 
-
 // ── MentorMatch ───────────────────────────────────────────────────────────────
 
 model MentorMatch {
@@ -510,8 +502,8 @@ model MentorMatch {
   menteeId String
   mentee   User   @relation("MenteeMatches", fields: [menteeId], references: [id])
 
-  status    String   @default("pending") // "pending" | "active" | "ended"
-  matchedBy String?  // userId of the Manager/Admin who approved the match
+  status    String    @default("pending") // "pending" | "active" | "ended"
+  matchedBy String? // userId of the Manager/Admin who approved the match
   startedAt DateTime?
   endedAt   DateTime?
   notes     String?
@@ -527,11 +519,10 @@ model MentorMatch {
   @@index([status])
 }
 
-
 // ── MentorSession ─────────────────────────────────────────────────────────────
 
 model MentorSession {
-  id       String      @id @default(cuid())
+  id       String       @id @default(cuid())
   matchId  String?
   match    MentorMatch? @relation(fields: [matchId], references: [id])
   mentorId String
@@ -540,12 +531,12 @@ model MentorSession {
   mentee   User         @relation("SessionMentee", fields: [menteeId], references: [id])
 
   scheduledAt DateTime
-  duration    Int           // minutes
+  duration    Int // minutes
   status      SessionStatus @default(PENDING)
 
-  agendaNotes  String?  // shared notes before the session
-  sessionNotes String?  // mentor's post-session notes
-  menteeRating Int?     // 1–5 rating submitted by mentee after session
+  agendaNotes  String? // shared notes before the session
+  sessionNotes String? // mentor's post-session notes
+  menteeRating Int? // 1–5 rating submitted by mentee after session
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -555,7 +546,6 @@ model MentorSession {
   @@index([status])
   @@index([scheduledAt])
 }
-
 
 // ─── Programme ────────────────────────────────────────────────────────────────
 // Builders Residency and any future programme types.
@@ -567,18 +557,18 @@ model Programme {
 
   name        String
   description String?
-  type        String         @default("BUILDERS_RESIDENCY")
-  isActive    Boolean        @default(true)
+  type        String  @default("BUILDERS_RESIDENCY")
+  isActive    Boolean @default(true)
 
   // Tier eligibility — members at this slot or above can access
-  minimumTierSlot    TierSlot?      // null = all tiers (including Explorer)
+  minimumTierSlot TierSlot? // null = all tiers (including Explorer)
 
   // Enrollment model
-  enrollmentType     EnrollmentType @default(OPEN)
+  enrollmentType EnrollmentType @default(OPEN)
 
   // Scheduling
-  scheduleType       ScheduleType   @default(ONE_TIME)
-  recurringFrequency String?        // "monthly" | "quarterly" | "weekly" — only when RECURRING
+  scheduleType       ScheduleType @default(ONE_TIME)
+  recurringFrequency String? // "monthly" | "quarterly" | "weekly" — only when RECURRING
 
   cohorts ProgrammeCohort[]
 
@@ -590,7 +580,6 @@ model Programme {
   @@index([minimumTierSlot])
 }
 
-
 // ── ProgrammeCohort ───────────────────────────────────────────────────────────
 
 model ProgrammeCohort {
@@ -598,15 +587,15 @@ model ProgrammeCohort {
   programmeId String
   programme   Programme @relation(fields: [programmeId], references: [id])
 
-  name               String           // e.g. "Cohort 12 — Q1 2026"
-  phase              ProgrammePhase   @default(APPLICATION)
+  name               String // e.g. "Cohort 12 — Q1 2026"
+  phase              ProgrammePhase @default(APPLICATION)
   applicationOpenAt  DateTime?
   applicationCloseAt DateTime?
   startDate          DateTime?
   endDate            DateTime?
   demoDayDate        DateTime?
   maxParticipants    Int?
-  isRemote           Boolean          @default(false)
+  isRemote           Boolean        @default(false)
 
   // Corporate challenge brief (stored as JSON — flexible structure)
   corporateBriefJson Json?
@@ -614,7 +603,7 @@ model ProgrammeCohort {
   createdById String?
   createdBy   User?   @relation("CohortCreator", fields: [createdById], references: [id])
 
-  participants CohortParticipant[]
+  participants  CohortParticipant[]
   cohortCourses CohortCourse[]
   cohortMentors CohortMentor[]
   milestones    CohortMilestone[]
@@ -626,7 +615,6 @@ model ProgrammeCohort {
   @@index([programmeId])
   @@index([phase])
 }
-
 
 // ── CohortParticipant ─────────────────────────────────────────────────────────
 
@@ -641,9 +629,9 @@ model CohortParticipant {
   organisationId String?
   organisation   Organisation? @relation(fields: [organisationId], references: [id])
 
-  status          String   @default("applied") // "applied" | "selected" | "active" | "graduated" | "withdrawn"
-  applicationJson Json?    // application form responses
-  certificateUrl  String?  // uploaded by Manager after graduation
+  status          String    @default("applied") // "applied" | "selected" | "active" | "graduated" | "withdrawn"
+  applicationJson Json? // application form responses
+  certificateUrl  String? // uploaded by Manager after graduation
   graduatedAt     DateTime?
 
   createdAt DateTime @default(now())
@@ -655,7 +643,6 @@ model CohortParticipant {
   @@index([status])
 }
 
-
 // ─── Course Catalog ───────────────────────────────────────────────────────────
 // Reusable courses built by mentors/managers/admins.
 // A course lives in the global catalog and can be:
@@ -663,18 +650,18 @@ model CohortParticipant {
 //   (b) assigned to a tier    →  all members of that tier access it (library)
 
 model Course {
-  id          String       @id @default(cuid())
-  title       String
-  description String?
+  id           String       @id @default(cuid())
+  title        String
+  description  String?
   thumbnailUrl String?
-  status      CourseStatus @default(DRAFT)
-  sprintLabel String       @default("Module") // "Module" | "Sprint" | "Week" etc.
+  status       CourseStatus @default(DRAFT)
+  sprintLabel  String       @default("Module") // "Module" | "Sprint" | "Week" etc.
 
   // Authorship
   createdById  String
-  createdBy    User   @relation("CourseCreator",  fields: [createdById],  references: [id])
+  createdBy    User      @relation("CourseCreator", fields: [createdById], references: [id])
   reviewedById String?
-  reviewedBy   User?  @relation("CourseReviewer", fields: [reviewedById], references: [id])
+  reviewedBy   User?     @relation("CourseReviewer", fields: [reviewedById], references: [id])
   reviewNote   String?
   publishedAt  DateTime?
 
@@ -689,14 +676,13 @@ model Course {
   @@index([createdById])
 }
 
-
 // ── CourseModule ──────────────────────────────────────────────────────────────
 // Called "Sprint" in MaLern — renamed to Module for clarity.
 
 model CourseModule {
-  id          String  @id @default(cuid())
-  courseId    String
-  course      Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  id       String @id @default(cuid())
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   title       String
   description String?
@@ -711,7 +697,6 @@ model CourseModule {
   @@index([courseId, order])
 }
 
-
 // ── CourseLesson ──────────────────────────────────────────────────────────────
 
 model CourseLesson {
@@ -720,12 +705,12 @@ model CourseLesson {
   module   CourseModule @relation(fields: [moduleId], references: [id], onDelete: Cascade)
 
   title              String
-  code               String       // display code e.g. "R1", "V2", "MCQ3"
+  code               String // display code e.g. "R1", "V2", "MCQ3"
   type               LessonType
-  order              Int          @default(0)
-  isResource         Boolean      @default(false) // downloadable resource, not a step
-  submissionRequired Boolean      @default(false)
-  content            Json?        // type-specific content (pdf url, youtube id, mcq questions etc.)
+  order              Int        @default(0)
+  isResource         Boolean    @default(false) // downloadable resource, not a step
+  submissionRequired Boolean    @default(false)
+  content            Json? // type-specific content (pdf url, youtube id, mcq questions etc.)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -733,7 +718,6 @@ model CourseLesson {
   @@index([moduleId])
   @@index([moduleId, order])
 }
-
 
 // ── CohortCourse ──────────────────────────────────────────────────────────────
 // Links a published course to a cohort. Order controls curriculum sequence.
@@ -752,7 +736,6 @@ model CohortCourse {
   @@index([cohortId])
   @@index([courseId])
 }
-
 
 // ── CohortMentor ──────────────────────────────────────────────────────────────
 // Assigns a mentor/facilitator/assistant to a cohort.
@@ -773,7 +756,6 @@ model CohortMentor {
   @@index([userId])
 }
 
-
 // ── CohortMilestone ───────────────────────────────────────────────────────────
 // Checkpoints that cohort participants must reach.
 
@@ -787,6 +769,7 @@ model CohortMilestone {
   dueDate     DateTime?
   order       Int       @default(0)
   isRequired  Boolean   @default(true)
+  submissionType String @default("FILE_UPLOAD")
 
   submissions MilestoneSubmission[]
 
@@ -796,7 +779,6 @@ model CohortMilestone {
   @@index([cohortId])
   @@index([cohortId, order])
 }
-
 
 // ── MilestoneSubmission ───────────────────────────────────────────────────────
 // A participant's response to a milestone checkpoint.
@@ -809,10 +791,10 @@ model MilestoneSubmission {
   user        User            @relation("MilestoneSubmissions", fields: [userId], references: [id])
 
   status       MilestoneStatus @default(PENDING)
-  note         String?         // participant's submission note
-  fileUrl      String?         // optional uploaded file
-  linkUrl      String?         // optional link submission
-  reviewNote   String?         // reviewer's feedback
+  note         String? // participant's submission note
+  fileUrl      String? // optional uploaded file
+  linkUrl      String? // optional link submission
+  reviewNote   String? // reviewer's feedback
   reviewedById String?
   reviewedBy   User?           @relation("MilestoneReviews", fields: [reviewedById], references: [id])
 
@@ -827,17 +809,16 @@ model MilestoneSubmission {
   @@index([status])
 }
 
-
 // ── TierCourse ────────────────────────────────────────────────────────────────
 // Makes a published course available to all members of a tier as a
 // self-paced library course (not inside a cohort).
 
 model TierCourse {
-  id     String      @id @default(cuid())
-  tierId String
-  tier   CountryTier @relation(fields: [tierId], references: [id], onDelete: Cascade)
+  id       String      @id @default(cuid())
+  tierId   String
+  tier     CountryTier @relation(fields: [tierId], references: [id], onDelete: Cascade)
   courseId String
-  course   Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course   Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   assignedAt DateTime @default(now())
 
@@ -845,7 +826,6 @@ model TierCourse {
   @@index([tierId])
   @@index([courseId])
 }
-
 
 // ─── Content (Courses & Workshops) ────────────────────────────────────────────
 
@@ -855,8 +835,8 @@ model Content {
   title        String
   description  String?
   thumbnailUrl String?
-  contentUrl   String?     // file URL or external link
-  duration     Int?        // minutes
+  contentUrl   String? // file URL or external link
+  duration     Int? // minutes
 
   // Access gating — null means accessible to all tiers
   minimumTierSlot TierSlot?
@@ -864,7 +844,7 @@ model Content {
 
   // For WORKSHOP type
   scheduledAt DateTime?
-  hostId      String?   // User id of the presenter
+  hostId      String? // User id of the presenter
 
   enrollments ContentEnrollment[]
 
@@ -877,7 +857,6 @@ model Content {
   @@index([scheduledAt])
 }
 
-
 // ── ContentEnrollment ─────────────────────────────────────────────────────────
 
 model ContentEnrollment {
@@ -887,7 +866,7 @@ model ContentEnrollment {
   userId    String
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  progress       Int      @default(0)  // 0–100 percent
+  progress       Int       @default(0) // 0–100 percent
   completedAt    DateTime?
   certificateUrl String?
 
@@ -899,13 +878,12 @@ model ContentEnrollment {
   @@index([contentId])
 }
 
-
 // ─── Event ────────────────────────────────────────────────────────────────────
 
 model Event {
-  id        String    @id @default(cuid())
+  id        String           @id @default(cuid())
   countryId String
-  country   Country   @relation(fields: [countryId], references: [id])
+  country   Country          @relation(fields: [countryId], references: [id])
   cohortId  String?
   cohort    ProgrammeCohort? @relation(fields: [cohortId], references: [id])
 
@@ -913,7 +891,7 @@ model Event {
   description  String?
   type         EventType @default(PUBLIC)
   imageUrl     String?
-  location     String?   // physical address or "Online"
+  location     String? // physical address or "Online"
   streamUrl    String?
   startsAt     DateTime
   endsAt       DateTime?
@@ -930,7 +908,6 @@ model Event {
   @@index([startsAt])
   @@index([isPublished])
 }
-
 
 // ── EventRegistration ─────────────────────────────────────────────────────────
 
@@ -949,7 +926,6 @@ model EventRegistration {
   @@index([userId])
 }
 
-
 // ─── Opportunity ──────────────────────────────────────────────────────────────
 
 model Opportunity {
@@ -960,15 +936,15 @@ model Opportunity {
   type         OpportunityType
   title        String
   description  String?
-  organisation String?   // company or fund posting the opportunity
+  organisation String? // company or fund posting the opportunity
   url          String?
   deadline     DateTime?
 
   // null = visible to all tiers; set to restrict early access to higher tiers
   minimumTierSlot TierSlot?
 
-  isPublished Boolean  @default(false)
-  isPinned    Boolean  @default(false)
+  isPublished Boolean   @default(false)
+  isPinned    Boolean   @default(false)
   expiresAt   DateTime?
 
   bookmarks OpportunityBookmark[]
@@ -981,7 +957,6 @@ model Opportunity {
   @@index([isPublished])
   @@index([deadline])
 }
-
 
 // ── OpportunityBookmark ───────────────────────────────────────────────────────
 
@@ -999,7 +974,6 @@ model OpportunityBookmark {
   @@index([userId])
 }
 
-
 // ─── CommunityGroup ───────────────────────────────────────────────────────────
 
 model CommunityGroup {
@@ -1010,7 +984,7 @@ model CommunityGroup {
   name            String
   description     String?
   imageUrl        String?
-  isPublic        Boolean  @default(true)
+  isPublic        Boolean   @default(true)
   minimumTierSlot TierSlot? // null = all tiers
 
   members CommunityGroupMember[]
@@ -1021,7 +995,6 @@ model CommunityGroup {
 
   @@index([countryId])
 }
-
 
 // ── CommunityGroupMember ──────────────────────────────────────────────────────
 
@@ -1039,7 +1012,6 @@ model CommunityGroupMember {
   @@index([groupId])
   @@index([userId])
 }
-
 
 // ── Post ──────────────────────────────────────────────────────────────────────
 
@@ -1065,7 +1037,6 @@ model Post {
   @@index([createdAt])
 }
 
-
 // ─── PhysicalAccessBooking (SA guest days) ───────────────────────────────────
 // Members with eligible tiers book days at the Johannesburg precinct.
 
@@ -1077,7 +1048,7 @@ model PhysicalAccessBooking {
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   bookingDate DateTime
-  status      String   @default("confirmed") // "confirmed" | "cancelled" | "no_show"
+  status      String    @default("confirmed") // "confirmed" | "cancelled" | "no_show"
   checkedInAt DateTime?
   notes       String?
 
@@ -1088,7 +1059,6 @@ model PhysicalAccessBooking {
   @@index([bookingDate])
   @@index([status])
 }
-
 
 // ─── Subscription ─────────────────────────────────────────────────────────────
 
@@ -1119,7 +1089,6 @@ model Subscription {
   @@index([status])
 }
 
-
 // ─── Invoice ──────────────────────────────────────────────────────────────────
 
 model Invoice {
@@ -1131,15 +1100,15 @@ model Invoice {
   organisationId String?
   organisation   Organisation? @relation(fields: [organisationId], references: [id])
 
-  invoiceNumber  String        @unique
-  amount         Decimal       @db.Decimal(10, 2)
-  currency       String
-  status         PaymentStatus @default(PENDING)
-  dueAt          DateTime?
-  paidAt         DateTime?
-  invoiceUrl     String?   // generated PDF URL
-  providerRef    String?   // payment provider transaction ID
-  lineItemsJson  Json?
+  invoiceNumber String        @unique
+  amount        Decimal       @db.Decimal(10, 2)
+  currency      String
+  status        PaymentStatus @default(PENDING)
+  dueAt         DateTime?
+  paidAt        DateTime?
+  invoiceUrl    String? // generated PDF URL
+  providerRef   String? // payment provider transaction ID
+  lineItemsJson Json?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1149,7 +1118,6 @@ model Invoice {
   @@index([subscriptionId])
   @@index([organisationId])
 }
-
 
 // ─── WaitlistEntry ────────────────────────────────────────────────────────────
 // Captures interest for Coming Soon countries — works for both registered
@@ -1161,7 +1129,7 @@ model WaitlistEntry {
   country   Country @relation(fields: [countryId], references: [id])
   userId    String?
   user      User?   @relation(fields: [userId], references: [id])
-  email     String  // always captured, even for anonymous visitors
+  email     String // always captured, even for anonymous visitors
 
   notified  Boolean  @default(false)
   createdAt DateTime @default(now())
@@ -1170,7 +1138,6 @@ model WaitlistEntry {
   @@index([countryId])
   @@index([notified])
 }
-
 
 // ─── FeatureFlag ──────────────────────────────────────────────────────────────
 // Controlled by Super Admin. null countryId = global. Set countryId to scope
@@ -1191,7 +1158,6 @@ model FeatureFlag {
   @@index([countryId])
 }
 
-
 // ─── Notification ─────────────────────────────────────────────────────────────
 
 model Notification {
@@ -1208,24 +1174,23 @@ model Notification {
   @@index([userId, read])
 }
 
-
 // ─── AuditLog ─────────────────────────────────────────────────────────────────
 // Every significant action logs: actor, action, entity, country context,
 // old/new values, and timestamp. countryId is null for global actions
 // (e.g. Super Admin creating an Admin, toggling a feature flag).
 
 model AuditLog {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  action     String  // verb.noun format: "admin.invite" | "tier.update" | "member.suspend"
+  action     String // verb.noun format: "admin.invite" | "tier.update" | "member.suspend"
   countryId  String? // null = global / platform-level action
   entityType String? // "user" | "country" | "tier" | "cohort" | "organisation" | "programme" etc.
   entityId   String? // id of the record that was acted on
-  oldValue   Json?   // snapshot before the change
-  newValue   Json?   // snapshot after the change
-  meta       Json?   // additional context that doesn't fit old/new (e.g. invite link sent)
+  oldValue   Json? // snapshot before the change
+  newValue   Json? // snapshot after the change
+  meta       Json? // additional context that doesn't fit old/new (e.g. invite link sent)
 
   ip        String?
   userAgent String?
@@ -1237,7 +1202,6 @@ model AuditLog {
   @@index([entityType, entityId])
   @@index([createdAt])
 }
-
 
 // ─── SystemSetting ────────────────────────────────────────────────────────────
 // Key-value store for platform-wide configuration managed by Super Admin.

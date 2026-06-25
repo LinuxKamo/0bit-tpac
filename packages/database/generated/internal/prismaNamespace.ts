@@ -3631,6 +3631,7 @@ export const CohortMilestoneScalarFieldEnum = {
   dueDate: 'dueDate',
   order: 'order',
   isRequired: 'isRequired',
+  submissionType: 'submissionType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
