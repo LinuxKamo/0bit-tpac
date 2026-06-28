@@ -23,15 +23,26 @@ export const protect = async (
   next: NextFunction,
 ) => {
   try {
-    const token = req.cookies?.token || req.headers.authorization?.split(" ")[1];
+    const token =
+      req.headers.authorization?.split(" ")[1] || req.cookies?.token;
 
     if (!token) {
-      return res.status(HttpStatus.UNAUTHORIZED).json({ message: "Authentication required" });
+      return res
+        .status(HttpStatus.UNAUTHORIZED)
+        .json({ message: "Authentication required" });
     }
 
     const decoded = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
 
-    const currentUser = await prisma.user.findUnique({ where: { id: decoded.userId } });
+    const currentUser = await prisma.user.findUnique({
+      where: { id: decoded.userId },
+      select: {
+        id: true,
+        email: true,
+        role: true,
+        accountStatus: true
+      }
+    });
 
     if (!currentUser) {
       res.clearCookie("token", {
@@ -40,26 +51,34 @@ export const protect = async (
         sameSite: env.isProduction ? "none" : "lax",
         path: "/",
       });
-      return res.status(HttpStatus.UNAUTHORIZED).json({ message: "User no longer exists" });
+      return res
+        .status(HttpStatus.UNAUTHORIZED)
+        .json({ message: "User no longer exists" });
     }
 
     if (currentUser.accountStatus === AccountStatus.SUSPENDED) {
-      return res.status(HttpStatus.FORBIDDEN).json({ message: "Your account has been suspended" });
+      return res
+        .status(HttpStatus.FORBIDDEN)
+        .json({ message: "Your account has been suspended" });
     }
 
     if (currentUser.accountStatus === AccountStatus.DELETED) {
-      return res.status(HttpStatus.UNAUTHORIZED).json({ message: "User no longer exists" });
+      return res
+        .status(HttpStatus.UNAUTHORIZED)
+        .json({ message: "User no longer exists" });
     }
 
     req.user = {
       userId: currentUser.id,
-      role:   currentUser.role as Role,
-      email:  currentUser.email,
+      role: currentUser.role as Role,
+      email: currentUser.email,
     };
 
     next();
   } catch {
-    return res.status(HttpStatus.UNAUTHORIZED).json({ message: "Invalid or expired session" });
+    return res
+      .status(HttpStatus.UNAUTHORIZED)
+      .json({ message: "Invalid or expired session" });
   }
 };
 

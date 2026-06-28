@@ -40,12 +40,12 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const ROLE_ROUTES: Record<string, string> = {
-  SUPER_ADMIN:     "/super-admin",
-  ADMIN:           "/admin",
-  MANAGER:         "/manager",
+  SUPER_ADMIN: "/super-admin",
+  ADMIN: "/admin",
+  MANAGER: "/manager",
   CORPORATE_ADMIN: "/corporate",
-  MENTOR:          "/mentor",
-  MEMBER:          "/member",
+  MENTOR: "/mentor",
+  MEMBER: "/member",
 };
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -62,7 +62,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         status: err?.response?.status,
         data: err?.response?.data,
         message: err?.message,
-        token: typeof window !== "undefined" ? !!localStorage.getItem("auth_token") : "ssr",
+        token:
+          typeof window !== "undefined"
+            ? !!localStorage.getItem("auth_token")
+            : "ssr",
       });
       setUser(null);
     } finally {
@@ -70,9 +73,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const refreshUser = async () => { await loadUser(); };
+  const refreshUser = async () => {
+    await loadUser();
+  };
 
-  useEffect(() => { loadUser(); }, []);
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   const login = async (email: string, password: string) => {
     const response = await authService.login({ email, password });
@@ -93,7 +100,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, logout, setUser, refreshUser }}>
+    <AuthContext.Provider
+      value={{ user, isLoading, login, logout, setUser, refreshUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

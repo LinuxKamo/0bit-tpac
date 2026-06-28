@@ -15,7 +15,20 @@ export const login = catchAsync(async (req: Request, res: Response) => {
   const { email, password } = req.body;
   if (!email || !password) throw new AppError("Email and password are required", HttpStatus.BAD_REQUEST);
 
-  const user = await prisma.user.findUnique({ where: { email: email.trim().toLowerCase() } });
+  const user = await prisma.user.findUnique({ 
+    where: { email: email.trim().toLowerCase() },
+    select: {
+      id: true,
+      email: true,
+      password: true,
+      role: true,
+      accountStatus: true,
+      firstName: true,
+      lastName: true,
+      displayName: true,
+      avatarUrl: true
+    }
+  });
   if (!user) throw new AppError("Invalid credentials", HttpStatus.UNAUTHORIZED);
 
   if (user.accountStatus === "SUSPENDED")
@@ -28,13 +41,18 @@ export const login = catchAsync(async (req: Request, res: Response) => {
   const match = await authService.verifyPassword(password, user.password);
   if (!match) throw new AppError("Invalid credentials", HttpStatus.UNAUTHORIZED);
 
-  await prisma.user.update({ where: { id: user.id }, data: { lastActiveAt: new Date() } });
+  await prisma.user.update({ 
+    where: { id: user.id }, 
+    data: { lastActiveAt: new Date() },
+    select: { id: true }
+  });
 
   const token = authService.generateToken(user.id, user.role);
   setAuthCookie(res, token);
 
   await prisma.auditLog.create({
-    data: { userId: user.id, action: "LOGIN", ip: req.ip ?? null },
+    data: { userId: user.id, action: "LOGIN" },
+    select: { id: true }
   });
   req.auditLogged = true;
 
@@ -93,6 +111,7 @@ export const setPassword = catchAsync(async (req: Request, res: Response) => {
       verificationCode:    token,
       verificationExpires: { gt: new Date() },
     },
+    select: { id: true }
   });
 
   if (!user) throw new AppError("Invalid or expired invitation link", HttpStatus.BAD_REQUEST);
@@ -107,10 +126,12 @@ export const setPassword = catchAsync(async (req: Request, res: Response) => {
       verificationCode:    null,
       verificationExpires: null,
     },
+    select: { id: true }
   });
 
   await prisma.auditLog.create({
     data: { userId: user.id, action: "PASSWORD_SET" },
+    select: { id: true }
   });
   req.auditLogged = true;
 
@@ -126,7 +147,10 @@ export const forgotPassword = catchAsync(async (req: Request, res: Response) => 
   const { email } = req.body;
   if (!email) throw new AppError("Email is required", HttpStatus.BAD_REQUEST);
 
-  const user = await prisma.user.findUnique({ where: { email: email.trim().toLowerCase() } });
+  const user = await prisma.user.findUnique({ 
+    where: { email: email.trim().toLowerCase() },
+    select: { id: true }
+  });
 
   // Always return success to prevent email enumeration
   if (!user) {
@@ -142,6 +166,7 @@ export const forgotPassword = catchAsync(async (req: Request, res: Response) => 
   await prisma.user.update({
     where: { id: user.id },
     data:  { passwordResetToken: token, passwordResetExpires: expires },
+    select: { id: true }
   });
 
   const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${token}&email=${encodeURIComponent(email)}`;
@@ -166,6 +191,7 @@ export const resetPassword = catchAsync(async (req: Request, res: Response) => {
       passwordResetToken:   token,
       passwordResetExpires: { gt: new Date() },
     },
+    select: { id: true }
   });
 
   if (!user) throw new AppError("Invalid or expired reset link", HttpStatus.BAD_REQUEST);
@@ -179,6 +205,7 @@ export const resetPassword = catchAsync(async (req: Request, res: Response) => {
       passwordResetToken:   null,
       passwordResetExpires: null,
     },
+    select: { id: true }
   });
 
   return res.status(HttpStatus.OK).json({
@@ -202,7 +229,10 @@ export const register = catchAsync(async (req: Request, res: Response) => {
   const { email, password, firstName, lastName } = req.body;
   if (!email || !password) throw new AppError("Email and password are required", HttpStatus.BAD_REQUEST);
 
-  const existing = await prisma.user.findUnique({ where: { email: email.trim().toLowerCase() } });
+  const existing = await prisma.user.findUnique({ 
+    where: { email: email.trim().toLowerCase() },
+    select: { id: true }
+  });
   if (existing) throw new AppError("Email already in use", HttpStatus.CONFLICT);
 
   const hashed = await authService.hashPassword(password);
@@ -217,10 +247,12 @@ export const register = catchAsync(async (req: Request, res: Response) => {
       firstName:     firstName ?? null,
       lastName:      lastName  ?? null,
     },
+    select: { id: true, email: true, role: true }
   });
 
   await prisma.auditLog.create({
     data: { userId: user.id, action: "REGISTERED" },
+    select: { id: true }
   });
   req.auditLogged = true;
 

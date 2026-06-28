@@ -206,6 +206,9 @@ export async function runMigrationsAndSeed(): Promise<void> {
     await client.query(`ALTER TABLE "User" ADD COLUMN IF NOT EXISTS "bio"            TEXT;`);
     await client.query(`ALTER TABLE "User" ADD COLUMN IF NOT EXISTS "countryId"      TEXT;`);
     await client.query(`ALTER TABLE "User" ADD COLUMN IF NOT EXISTS "organisationId" TEXT;`);
+    await client.query(`ALTER TABLE "User" ADD COLUMN IF NOT EXISTS "invitedById"    TEXT;`);
+    await client.query(`ALTER TABLE "Notification" ADD COLUMN IF NOT EXISTS "read"   BOOLEAN NOT NULL DEFAULT false;`);
+    await client.query(`ALTER TABLE "Notification" ADD COLUMN IF NOT EXISTS "link"   TEXT;`);
 
     // ── Indexes ──────────────────────────────────────────────────────────────
     await client.query(`CREATE UNIQUE INDEX IF NOT EXISTS "User_email_key"    ON "User"("email");`);
